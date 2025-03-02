@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список подій</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+</head>
+<body>
+    <section class="events-container">
+        <h1>Події</h1>
+        <div id="events-list" class="events-list">
+            <!-- Події будуть додаватися тут динамічно -->
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const events = [
+                {
+                    name: "Волонтерство у Львові",
+                    category: "Допомога",
+                    city: "Львів",
+                    district: "Личаківський",
+                    street: "вул. Чупринки, 110",
+                    startTime: "10:00",
+                    endTime: "14:00",
+                    phone: "+380123456789",
+                    email: "example@gmail.com",
+                    description: "Допомога у роздачі гуманітарної допомоги.",
+                    image: "https://via.placeholder.com/150"
+                }
+            ];
+
+            const eventsList = document.getElementById('events-list');
+
+            events.forEach(event => {
+                const eventCard = `
+                    <div class="event-card">
+                        <img src="${event.image}" alt="${event.name}">
+                        <div class="event-content">
+                            <h2>${event.name}</h2>
+                            <p><strong>Категорія:</strong> ${event.category}</p>
+                            <p><strong>Місце:</strong> ${event.city}, ${event.district}, ${event.street}</p>
+                            <p><strong>Час:</strong> ${event.startTime} - ${event.endTime}</p>
+                            <p><strong>Телефон:</strong> ${event.phone}</p>
+                            <p><strong>Email:</strong> ${event.email}</p>
+                            <p><strong>Опис:</strong> ${event.description}</p>
+                        </div>
+                    </div>
+                `;
+                eventsList.innerHTML += eventCard;
+            });
+        });
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+        }
+
+        .events-container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .events-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .event-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .event-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .event-content {
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin: 5px 0;
+        }
+    </style>
+</body>
+</html>
