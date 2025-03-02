@@ -40,9 +40,13 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
-    'API.apps.APIConfig'
+    'HANDY.apps.HANDYConfig'
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'HANDY.authentication.CustomUserBackend',
+    'django.contrib.auth.backends.ModelBackend',  # Стандартний бекенд Django
+]
 
 CORS_ALLOW_ALL_ORIGINS = True 
 
@@ -83,11 +87,17 @@ WSGI_APPLICATION = 'main.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'handy',
+        'USER': 'avnadmin',
+        'PASSWORD': 'AVNS_5iLGlI4HOeNjdPp2q1L',
+        'HOST': 'handydb-handyv.d.aivencloud.com',
+        'PORT': '17802',
+        'OPTIONS': {
+            'sslmode': 'require',
+        },
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
