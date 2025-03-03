@@ -1,27 +1,14 @@
-"""myproject URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path
-from HANDY.views import register , login
-
-
+from HANDY.controllers.post_views import create_post, post_list, edit_post, delete_post
+from HANDY.controllers.user_views import login, register
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', register, name='register'),
     path('login/', login, name='login'),
-   
+    path('create_post/', create_post, name='create_post'),
+    path('posts/', post_list, name='post_list'),
+    path('edit_post/<int:pk>/', edit_post, name='edit_post'),
+    path('delete_post/<int:pk>/', delete_post, name='delete_post'),
 ]
