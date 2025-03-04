@@ -11,6 +11,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth.hashers import make_password, check_password
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.permissions import IsAuthenticated , AllowAny
+import logging
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def register(request):
@@ -75,3 +77,29 @@ def login(request):
         'access_token': access_token,
         'refresh_token': str(refresh)
     }, status=status.HTTP_200_OK)
+
+
+
+
+logger = logging.getLogger(__name__)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_profile(request):
+    user = request.user
+    if not user:
+        logger.error("User not found")
+        return Response({"detail": "User not found", "code": "user_not_found"}, status=status.HTTP_404_NOT_FOUND)
+
+    profile_data = {
+        
+        'email': user.email,
+        'phone_number': user.phone_number,
+        'first_name': user.first_name,
+        'last_name': user.last_name,
+        'profile_picture': user.profile_picture.url if user.profile_picture else None,
+        'description': user.description,
+        'location_short': user.location_short,
+        'is_active': user.is_active,
+    }
+    return Response(profile_data, status=status.HTTP_200_OK)

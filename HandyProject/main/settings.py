@@ -45,7 +45,8 @@ INSTALLED_APPS = [
 
 AUTHENTICATION_BACKENDS = [
     'HANDY.authentication.CustomUserBackend',
-    'django.contrib.auth.backends.ModelBackend',  # Стандартний бекенд Django
+    'django.contrib.auth.backends.ModelBackend',
+    
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True 
@@ -129,6 +130,9 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
+0
+AUTH_USER_MODEL = 'HANDY.User'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
