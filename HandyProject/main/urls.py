@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from HANDY.views import register , login , get_profile
+from HANDY.views import register , login , get_profile ,  update_profile  , user_comments , get_user_profile
 
 
 
@@ -24,5 +24,9 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('login/', login, name='login'),
     path('profile/', get_profile, name='login'),
+    path('update-profile/', update_profile, name='update-profile'),
+    path("comments/<int:user_id>/", user_comments, name="user-comments"),
+    path("profile/<int:user_id>/", get_user_profile, name="get_user_profile"),
+    
    
 ]

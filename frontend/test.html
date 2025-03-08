@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список подій</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+</head>
+<body>
+    <section class="events-container">
+        <h1>Події</h1>
+        <div id="events-list" class="events-list">
+            <!-- Події будуть додаватися тут динамічно -->
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const eventsList = document.getElementById('events-list');
+    
+            try {
+                let response = await fetch("http://127.0.0.1:8000/events/", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+    
+                if (!response.ok) {
+                    throw new Error("Не вдалося завантажити події");
+                }
+    
+                let events = await response.json();
+    
+                if (events.length === 0) {
+                    eventsList.innerHTML = `<p>Наразі немає доступних подій.</p>`;
+                    return;
+                }
+    
+                events.forEach(event => {
+                    const eventCard = `
+                        <div class="event-card">
+                            <img src="${event.image || 'https://via.placeholder.com/150'}" alt="${event.title}">
+                            <div class="event-content">
+                                <h2>${event.title}</h2>
+                                <p><strong>Категорія:</strong> ${event.category}</p>
+                                <p><strong>Місце:</strong> ${event.location_full}</p>
+                                <p><strong>Час:</strong> ${event.start_date} - ${event.end_date}</p>
+                                <p><strong>Телефон:</strong> ${event.phone_number}</p>
+                                <p><strong>Email:</strong> ${event.email}</p>
+                                <p><strong>Опис:</strong> ${event.description}</p>
+                            </div>
+                        </div>
+                    `;
+                    eventsList.innerHTML += eventCard;
+                });
+            } catch (error) {
+                console.error("Помилка:", error);
+                eventsList.innerHTML = `<p>Сталася помилка при завантаженні подій.</p>`;
+            }
+        });
+    </script>
+    
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+        }
+
+        .events-container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .events-list {
+            display: grid;
+            
+            gap: 20px;
+        }
+
+        .event-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .event-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .event-content {
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin: 5px 0;
+        }
+    </style>
+</body>
+</html>
