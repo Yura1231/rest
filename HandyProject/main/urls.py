@@ -15,18 +15,59 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from HANDY.views import register , login , get_profile ,  update_profile  , user_comments , get_user_profile
-
-
-
+from HANDY.controllers.user_views import (
+    register,
+    login,
+    get_profile,
+    get_user_profile,
+    update_profile,
+    
+    user_comments,
+    user_commentsss,
+    get_user_comments
+)
+from HANDY.controllers.event_views import (
+    
+    create_event,
+    user_events,
+    get_events,
+    delete_event,
+    check_event_registration,
+    subscribe_to_post,
+    unsubscribe,
+    my_subscriptions,
+    send_subscription_email,
+    confirm_subscription,
+    
+)
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', register, name='register'),
     path('login/', login, name='login'),
     path('profile/', get_profile, name='login'),
     path('update-profile/', update_profile, name='update-profile'),
-    path("comments/<int:user_id>/", user_comments, name="user-comments"),
+    path('create-event/', create_event, name='create_event'),
+    path('my-events/', user_events, name='list_all_events'),
+    path('events/', get_events, name='events-list'),
+    path('events/<int:event_id>/check-registration/', check_event_registration, name='check_event_registration'),
+    path('events/<int:event_id>/', subscribe_to_post, name='subscribe_to_post'),
+    path('unsubscribe/<int:event_id>/', unsubscribe, name='unsubscribe'),
+    path('my-subscriptions/', my_subscriptions, name='my_subscriptions'),
+    path("subscribe/<int:event_id>/", send_subscription_email, name="subscribe_email"),
+    path("confirm-subscription/<str:token>/", confirm_subscription, name="confirm_subscription"),
     path("profile/<int:user_id>/", get_user_profile, name="get_user_profile"),
-    
+    path("comments/<int:user_id>/", user_comments, name="user-comments"),
+    path('delete/<int:event_id>/', delete_event, name='delete_event'),
+    path('users/<int:user_id>/comments/', get_user_comments, name='user-comments'),
+    path('comments/', user_commentsss, name='user_commentsss'),
    
-]
+   
+]  
+
+
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

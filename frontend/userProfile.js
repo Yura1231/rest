@@ -1,16 +1,119 @@
-document.querySelectorAll('.tab').forEach(tab => {
-    tab.addEventListener('click', function() {
-        // Видалити клас "active" у всіх вкладках
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        // Додати клас "active" на поточну вкладку
-        this.classList.add('active');
-        // Ховати всі блоки контенту
-        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-        // Показати контент для поточної вкладки
-        const tabId = this.getAttribute('data-tab');
-        document.getElementById(tabId).classList.add('active');
+document.addEventListener("DOMContentLoaded", async function () {
+   
+    loadUserEvents();
+    loadSubscribedEvents();
+
+    document.querySelectorAll(".tab").forEach((tab) => {
+        tab.addEventListener("click", function () {
+            document.querySelectorAll(".tab").forEach((t) => t.classList.remove("active"));
+            this.classList.add("active");
+
+            document.querySelectorAll(".tab-content").forEach((content) => content.classList.remove("active"));
+
+            const tabId = this.getAttribute("data-tab");
+            document.getElementById(tabId).classList.add("active");
+        });
     });
 });
+
+async function loadUserEvents() {
+    try {
+        let response = await fetch("http://127.0.0.1:8000/my-events/", {
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("access_token"),
+                "Content-Type": "application/json",
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error("Помилка завантаження подій");
+        }
+
+        let events = await response.json();
+        let container = document.getElementById("published");
+
+        if (events.length === 0) {
+            container.innerHTML = `<div class="content-box">Ви ще не публікували подій.</div>`;
+            return;
+        }
+
+        let html = events
+            .map(
+                (event) => `
+           <div class="event-item">
+    <div class="event-header">
+        <h3 class="event-title">${event.title}</h3>
+        <span class="event-date">${event.start_date} - ${event.end_date}</span>
+    </div>
+    <p><strong>Місце:</strong> ${event.location_full}</p>
+    <p><strong>Категорія:</strong> ${event.category}</p>
+    <p class="event-description">${event.description}</p>
+    <p class="event-description">${event.people_needed}</p>
+    <button class="event-btn">Деталі</button>
+</div>
+        `
+            )
+            .join("");
+
+        container.innerHTML = html;
+    } catch (error) {
+        console.error("Помилка:", error);
+        document.getElementById("published").innerHTML = `<div class="content-box">Не вдалося завантажити події.</div>`;
+    }
+}
+
+
+async function loadSubscribedEvents() {
+    try {
+        let response = await fetch("http://127.0.0.1:8000/my-subscriptions/", {
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("access_token"),
+                "Content-Type": "application/json",
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error("Помилка завантаження підписок");
+        }
+
+        let events = await response.json();
+        let container = document.getElementById("helped");
+
+        if (events.length === 0) {
+            container.innerHTML = `<div class="content-box">Ви ще не підписалися на жодну подію.</div>`;
+            return;
+        }
+
+        let html = events
+            .map(
+                (event) => `
+           <div class="event-item">
+    <div class="event-header">
+    
+    
+        <h3 class="event-title">${event.title}</h3>
+        
+        <span class="event-date">${event.start_date} - ${event.end_date}</span>
+    </div>
+    <img src="http://127.0.0.1:8000${event.image}" alt="${event.title}" >
+    <p><strong>Місце:</strong> ${event.location_full}</p>
+    <p><strong>Категорія:</strong> ${event.category}</p>
+    <p class="event-description">${event.description}</p>
+    
+    <button class="event-btn">Деталі</button>
+</div>
+        `
+            )
+            .join("");
+
+        container.innerHTML = html;
+    } catch (error) {
+        console.error("Помилка:", error);
+        document.getElementById("helped").innerHTML = `<div class="content-box">Не вдалося завантажити події.</div>`;
+    }
+}
 
 document.getElementById("editNameBtn").addEventListener("click", function() {
     let nameDisplay = document.getElementById("userName");
@@ -176,10 +279,10 @@ document.getElementById("photoInput").addEventListener("change", function(event)
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    const accessToken = localStorage.getItem("access_token"); // Отримуємо токен з локального сховища
+    const accessToken = localStorage.getItem("access_token"); 
     if (!accessToken) {
         alert("Будь ласка, увійдіть у свій акаунт.");
-        window.location.href = "login.html"; // Перенаправлення на сторінку входу
+        window.location.href = "login.html"; 
         return;
     }
 
@@ -204,7 +307,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("last_name").value = data.last_name;
 
         if (data.profile_picture) {
-            document.getElementById("profilePhoto").src = data.profile_picture;
+            document.getElementById("profilePhoto").src = `http://127.0.0.1:8000${data.profile_picture}`;
         }
 
         if (data.description) {
@@ -214,5 +317,73 @@ document.addEventListener("DOMContentLoaded", function () {
     .catch(error => {
         console.error("Помилка:", error);
     });
+});
+
+
+
+document.getElementById('help-btn').addEventListener('click', function() {
+    window.location.href = 'add-event.html';
+});
+
+
+
+
+async function loadUserComments() {
+    try {
+        let response = await fetch("http://127.0.0.1:8000/comments/", {
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("access_token"),
+                "Content-Type": "application/json",
+            },
+        });
+    
+        if (!response.ok) {
+            throw new Error("Помилка завантаження коментарів");
+        }
+    
+        let comments = await response.json();
+        console.log(comments); // Перевіряємо, що приходить від сервера
+    
+        const reviewsContainer = document.getElementById("reviews");
+        if (!reviewsContainer) {
+            console.error("Помилка: контейнер 'reviews' не знайдено!");
+            return;
+        }
+    
+        reviewsContainer.innerHTML = ""; // Очищаємо перед вставкою коментарів
+    
+        if (comments.length === 0) {
+            reviewsContainer.innerHTML = `<div class="content-box">Немає коментарів.</div>`;
+            return;
+        }
+    
+        comments.forEach(comment => {
+            const commentElement = document.createElement("div");
+            commentElement.classList.add("content-box");
+    
+            commentElement.innerHTML = `
+                <div class="review-item">
+                    <img src="http://127.0.0.1:8000${comment.author_profile_picture}" alt="User Avatar" class="user-avatar">
+                    <div class="review-content">
+                        <span class="user-name">${comment.author_first_name} ${comment.author_last_name}</span>
+                        <p class="review-text">${comment.text}</p>
+                        <small>${new Date(comment.created_at).toLocaleString()}</small>
+                    </div>
+                </div>
+            `;
+    
+            reviewsContainer.appendChild(commentElement);
+        });
+    
+    } catch (error) {
+        console.error("Помилка:", error);
+        document.getElementById("reviews").innerHTML = `<div class="content-box">Не вдалося завантажити коментарі.</div>`;
+    }
+}
+
+// Викликаємо функцію завантаження коментарів при завантаженні сторінки
+document.addEventListener("DOMContentLoaded", function () {
+    loadUserComments();
 });
 

@@ -53,7 +53,6 @@ body {
     margin: 0 auto;
     padding: 20px;
     width: 100%;
-    
 }
 
 .header {
@@ -150,7 +149,7 @@ nav a {
 }
 
 .profile-header {
-    font-size: 36px;
+    font-size: 26px;
     font-weight: 500;
     margin-bottom: 20px;
     text-align: center;
@@ -212,7 +211,16 @@ input {
     padding: 10px;
     width: 100%;
     margin-bottom: 10px;
-    margin-top: 20px;
+    margin-top: 10px;
+}
+
+.comment-filed{
+    flex: 1;
+    border: 1px solid #000000;
+    padding: 10px;
+    width: 100%;
+    height: 150px;
+    box-shadow: 2px 7px 10px rgba(0, 0, 0, 0.2);
 }
 
 #userNameWrapper {
@@ -222,25 +230,7 @@ input {
     gap: 5px;
 }
 
-.edit-btn {
-    display: flex;
-    background: none;
-    color: #615B5B;
-    font-size: 16px;
-    text-align: left;
-    padding: 10px 20px;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    border: none;
-    height: 100%;
-    align-items: center;
-}
-
-.edit-btn:hover {
-    color: #333;
-}
-
-.help-btn {
+.coment-btn {
     background: #32CD32;
     color: #fff;
     width: 60%;
@@ -250,17 +240,16 @@ input {
     font-weight: bold;
     border: none;
     align-self: center;
-    margin-top: 50px;
     transition: 0.3s, transform 0.2s;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.help-btn:hover {
+.coment-btn:hover {
     background: #24c92d;
     transform: scale(1.05);
 }
 
-.help-btn:active {
+.coment-btn:active {
     transform: scale(0.95);
 }
 
@@ -303,8 +292,53 @@ background-color: #C1F6BF;
 border-radius: 45px;
 padding: 20px;
 width: 80%;
-text-align: center;
-margin: 0 auto;
+margin: 0 auto 15px auto;
+display: flex;
+flex-direction: column;
+gap: 15px;
+}
+
+.review-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 15px;
+    min-height: 80px;
+}
+
+.user-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.review-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.review-content p {
+    white-space: pre-line;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow-wrap: break-word;
+}
+
+.user-name {
+    font-size: 24px;
+    font-weight: 500;
+    color: #333;
+    white-space: nowrap;
+}
+
+.review-text {
+    font-size: 16px;
+    color: #000000;
+    margin-top: 5px;
+    word-break: break-word;
 }
 
 .footer-container {
@@ -368,128 +402,4 @@ margin: 0 auto;
     position: relative;
     padding: 32px 0;
     background-color: #043c05;
-}
-
-/* Стиль для картки події */
-.event-item {
-    background-color: #F7F9F5;
-    border-radius: 15px;
-    padding: 20px;
-    margin-bottom: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Зміна ефекту при наведенні */
-.event-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
-}
-
-/* Стиль для заголовка події */
-.event-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.event-title {
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-}
-
-.event-date {
-    font-size: 14px;
-    color: #6a6a6a;
-}
-
-/* Опис події */
-.event-description {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #555;
-    line-height: 1.5;
-}
-
-/* Кнопка для деталей */
-.event-btn {
-    background-color: #085A0A;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 14px;
-    margin-top: 15px;
-    transition: background-color 0.3s ease;
-}
-
-.event-btn:hover {
-    background-color: #006400;
-}
-.footer {
-    background-color: #085A0A;
-    display: flex;
-    width: 100%;
-    min-height: 50px;
-    padding: 20px;
-    align-items: center;
-}
-
-
-.content-box {
-    background-color: #C1F6BF;
-    border-radius: 45px;
-    padding: 20px;
-    width: 80%;
-    margin: 0 auto 15px auto;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    }
-
-.review-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 15px;
-    padding: 15px;
-    min-height: 80px;
-}
-
-.user-avatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    flex-shrink: 0;
-}
-
-.review-content {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Додаємо вирівнювання вліво */
-}
-
-.review-content p {
-    white-space: pre-line;
-    word-wrap: break-word;
-    word-break: break-all;
-    overflow-wrap: break-word;
-}
-
-.user-name {
-    font-size: 24px;
-    font-weight: 500;
-    color: #333;
-    white-space: nowrap;
-}
-
-.review-text {
-    font-size: 16px;
-    color: #000000;
-    margin-top: 5px;
-    word-break: break-word;
 }
