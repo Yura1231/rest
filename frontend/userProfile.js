@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", async function () {
-   
     loadUserEvents();
     loadSubscribedEvents();
 
@@ -41,25 +40,62 @@ async function loadUserEvents() {
         let html = events
             .map(
                 (event) => `
-           <div class="event-item">
-    <div class="event-header">
-        <h3 class="event-title">${event.title}</h3>
-        <span class="event-date">${event.start_date} - ${event.end_date}</span>
-    </div>
-    <p><strong>Місце:</strong> ${event.location_full}</p>
-    <p><strong>Категорія:</strong> ${event.category}</p>
-    <p class="event-description">${event.description}</p>
-    <p class="event-description">${event.people_needed}</p>
-    <button class="event-btn">Деталі</button>
-</div>
+           <div class="event-item" id="event-${event.id}">
+                <div class="event-header">
+                    <h3 class="event-title">${event.title}</h3>
+                    <span class="event-date">${event.start_date} - ${event.end_date}</span>
+                </div>
+                <p><strong>Місце:</strong> ${event.location_full}</p>
+                <p><strong>Категорія:</strong> ${event.category}</p>
+                <p class="event-description">${event.description}</p>
+                <p class="event-description">${event.people_needed}</p>
+                <button class="event-btn delete-btn" data-id="${event.id}">Видалити</button>
+           </div>
         `
             )
             .join("");
 
         container.innerHTML = html;
+
+        // Додаємо обробник подій для кнопок "Видалити"
+        document.querySelectorAll(".delete-btn").forEach((button) => {
+            button.addEventListener("click", async function () {
+                let eventId = this.getAttribute("data-id");
+                await deleteEvent(eventId);
+            });
+        });
+
     } catch (error) {
         console.error("Помилка:", error);
         document.getElementById("published").innerHTML = `<div class="content-box">Не вдалося завантажити події.</div>`;
+    }
+}
+
+// Функція для видалення події
+async function deleteEvent(eventId) {
+    if (!confirm("Ви впевнені, що хочете видалити цю подію?")) {
+        return;
+    }
+
+    try {
+        let response = await fetch(`http://127.0.0.1:8000/delete/${eventId}/`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("access_token"),
+                "Content-Type": "application/json",
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error("Не вдалося видалити подію");
+        }
+
+        
+        document.getElementById(`event-${eventId}`).remove();
+        alert("Подію успішно видалено!");
+    } catch (error) {
+        console.error("Помилка:", error);
+        alert("Не вдалося видалити подію.");
     }
 }
 
