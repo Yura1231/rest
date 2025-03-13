@@ -17,7 +17,7 @@
                         <li><a class= "link" href="/index.html">Головна</a></li>
                         <li><a class= "link" href="test.html">Події</a></li>
                         <li><a class= "link" href="/about-us.html">Про нас</a></li>
-                        <li><a class= "link" href="/contact.html">Контакти</a></li>
+                        <li><a class= "link" href="/instruction.html">Інструкція з використання</a></li>
                     </ul>
                 </nav>
                 <div class="auth">
@@ -38,24 +38,11 @@
                 <option value="help">Допомога</option>
                 <option value="education">Освіта</option>
                 <option value="medicine">Медицина</option>
-                <option value="animals">Допомога тваринам</option>
-                <option value="children">Допомога дітям</option>
-                <option value="elderly">Допомога літнім людям</option>
-                <option value="disabled">Допомога людям з інвалідністю</option>
-                <option value="refugees">Допомога переселенцям</option>
                 <option value="community">Громадська діяльність</option>
-                <option value="sports">Спортивні заходи</option>
-                <option value="culture">Культура та мистецтво</option>
                 <option value="social">Соціальні ініціативи</option>
                 <option value="emergency">Надзвичайні ситуації</option>
                 <option value="mental-health">Психологічна підтримка</option>
-                <option value="environment">Охорона довкілля</option>
-                <option value="science">Наука та технології</option>
-                <option value="human-rights">Права людини</option>
-                <option value="blood-donation">Донорство крові</option>
                 <option value="reconstruction">Відновлення інфраструктури</option>
-                <option value="food-aid">Харчова допомога</option>
-                <option value="legal-aid">Юридична допомога</option>
             </select>
             <div id="events-list" class="events-list">
                 <!-- Події будуть додаватися тут динамічно -->
@@ -120,7 +107,7 @@
         {
             name: "Еко-акція у Львові",
             category: "Екологія",
-            city: "Львові",
+            city: "Львів",
             district: "Франківський",
             street: "вул. Володимира Великого, 22",
             startTime: "09:00",
@@ -143,30 +130,17 @@
     "help": "Допомога",
     "education": "Освіта",
     "medicine": "Медицина",
-    "animals": "Допомога тваринам",
-    "children": "Допомога дітям",
-    "elderly": "Допомога літнім людям",
-    "disabled": "Допомога людям з інвалідністю",
-    "refugees": "Допомога переселенцям",
     "community": "Громадська діяльність",
-    "sports": "Спортивні заходи",
-    "culture": "Культура та мистецтво",
     "social": "Соціальні ініціативи",
     "emergency": "Надзвичайні ситуації",
     "mental-health": "Психологічна підтримка",
-    "environment": "Охорона довкілля",
-    "science": "Наука та технології",
     "human-rights": "Права людини",
-    "blood-donation": "Донорство крові",
     "reconstruction": "Відновлення інфраструктури",
-    "food-aid": "Харчова допомога",
-    "legal-aid": "Юридична допомога"
 };
 
 // Функція для фільтрації подій за категорією
 function filterEvents(category) {
     eventsList.innerHTML = ''; // Очищення списку подій перед відображенням
-
     events.forEach(event => {
         // Перевіряємо, чи обрана категорія або показуємо всі події
         if (category === 'all' || categoryMapping[category] === event.category) {
@@ -205,8 +179,6 @@ categoryFilter.addEventListener('change', () => {
         </script>
     </main>
 
-    
-
 <footer class="footer">
     <div class="container">
         <div class="footer-container">
@@ -218,7 +190,7 @@ categoryFilter.addEventListener('change', () => {
                     <li><a class="footer-link" href="/index.html">Головна</a></li>
                     <li><a class="footer-link" href="#">Події</a></li>
                     <li><a class="footer-link" href="/about-us.html">Про нас</a></li>
-                    <li><a class="footer-link" href="/contact.html">Контакти</a></li>
+                    <li><a class="footer-link" href="instruction.html">Інструкція з використання</a></li>
                 </ul>
             </nav>
             <address class="footer-address">
