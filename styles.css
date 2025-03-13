@@ -219,7 +219,6 @@ body {
     gap: 64px;
     flex-grow: 1;
     justify-content: center;
-
 }
 
 .logo {
@@ -345,6 +344,35 @@ main {
     max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.help-btn {
+    background: #32CD32;
+    color: #fff;
+    width: 60%;
+    border-radius: 50px;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    align-self: center;
+    margin-top: 50px;
+    transition: 0.3s, transform 0.2s;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    display: block;
+    margin: 50px auto 0 auto;
+}
+
+.help-btn:hover {
+    background: #24c92d;
+    transform: scale(1.05);
+}
+
+.help-btn:active {
+    transform: scale(0.95);
 }
 
 .faq {
