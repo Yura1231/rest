@@ -12,13 +12,13 @@
         <div class="container">
             <div class="header-container">
                 <div class="logo">HANDY</div>
-             <nav class="header-nav">
-                     <ul class="header-menu">
+            <nav class="header-nav">
+                    <ul class="header-menu">
                         <li><a class= "link" href="/index.html">Головна</a></li>
                         <li><a class= "link" href="test.html">Події</a></li>
                         <li><a class= "link" href="/about-us.html">Про нас</a></li>
                         <li><a class= "link" href="/contact.html">Контакти</a></li>
-                     </ul>
+                    </ul>
                 </nav>
                 <div class="auth">
                     <a class= "link" href="/login.html">Увійти</a> | <a class= "link" href="/register-form.html">Зареєструватись</a>
@@ -30,6 +30,33 @@
     <main>
         <section class="events-container">
             <h1>Події</h1>
+            <select id="category-filter">
+                <option value="all">Усі категорії</option>
+                <option value="donate">Донат</option>
+                <option value="ecology">Екологія</option>
+                <option value="military">Військове</option>
+                <option value="help">Допомога</option>
+                <option value="education">Освіта</option>
+                <option value="medicine">Медицина</option>
+                <option value="animals">Допомога тваринам</option>
+                <option value="children">Допомога дітям</option>
+                <option value="elderly">Допомога літнім людям</option>
+                <option value="disabled">Допомога людям з інвалідністю</option>
+                <option value="refugees">Допомога переселенцям</option>
+                <option value="community">Громадська діяльність</option>
+                <option value="sports">Спортивні заходи</option>
+                <option value="culture">Культура та мистецтво</option>
+                <option value="social">Соціальні ініціативи</option>
+                <option value="emergency">Надзвичайні ситуації</option>
+                <option value="mental-health">Психологічна підтримка</option>
+                <option value="environment">Охорона довкілля</option>
+                <option value="science">Наука та технології</option>
+                <option value="human-rights">Права людини</option>
+                <option value="blood-donation">Донорство крові</option>
+                <option value="reconstruction">Відновлення інфраструктури</option>
+                <option value="food-aid">Харчова допомога</option>
+                <option value="legal-aid">Юридична допомога</option>
+            </select>
             <div id="events-list" class="events-list">
                 <!-- Події будуть додаватися тут динамічно -->
             </div>
@@ -74,8 +101,108 @@
                     eventsList.innerHTML += eventCard;
                 });
             });
-        </script>
 
+            document.addEventListener('DOMContentLoaded', () => {
+                const events = [
+        {
+            name: "Волонтерство у Львові",
+            category: "Допомога",
+            city: "Львів",
+            district: "Личаківський",
+            street: "вул. Чупринки, 110",
+            startTime: "10:00",
+            endTime: "14:00",
+            phone: "+380123456789",
+            email: "example@gmail.com",
+            description: "Допомога у роздачі гуманітарної допомоги.",
+            image: "https://via.placeholder.com/150"
+        },
+        {
+            name: "Еко-акція у Львові",
+            category: "Екологія",
+            city: "Львові",
+            district: "Франківський",
+            street: "вул. Володимира Великого, 22",
+            startTime: "09:00",
+            endTime: "12:00",
+            phone: "+380987654321",
+            email: "eco-event@gmail.com",
+            description: "Прибирання парків та скверів місті.",
+            image: "https://via.placeholder.com/150"
+        }
+    ];
+
+
+    const eventsList = document.getElementById('events-list');
+    const categoryFilter = document.getElementById('category-filter');
+
+    const categoryMapping = {
+    "donate": "Донат",
+    "ecology": "Екологія",
+    "military": "Військове",
+    "help": "Допомога",
+    "education": "Освіта",
+    "medicine": "Медицина",
+    "animals": "Допомога тваринам",
+    "children": "Допомога дітям",
+    "elderly": "Допомога літнім людям",
+    "disabled": "Допомога людям з інвалідністю",
+    "refugees": "Допомога переселенцям",
+    "community": "Громадська діяльність",
+    "sports": "Спортивні заходи",
+    "culture": "Культура та мистецтво",
+    "social": "Соціальні ініціативи",
+    "emergency": "Надзвичайні ситуації",
+    "mental-health": "Психологічна підтримка",
+    "environment": "Охорона довкілля",
+    "science": "Наука та технології",
+    "human-rights": "Права людини",
+    "blood-donation": "Донорство крові",
+    "reconstruction": "Відновлення інфраструктури",
+    "food-aid": "Харчова допомога",
+    "legal-aid": "Юридична допомога"
+};
+
+// Функція для фільтрації подій за категорією
+function filterEvents(category) {
+    eventsList.innerHTML = ''; // Очищення списку подій перед відображенням
+
+    events.forEach(event => {
+        // Перевіряємо, чи обрана категорія або показуємо всі події
+        if (category === 'all' || categoryMapping[category] === event.category) {
+            const eventCard = `
+                <div class="event-card">
+                    <img src="${event.image}" alt="${event.name}">
+                    <div class="event-content">
+                        <h2>${event.name}</h2>
+                        <p><strong>Категорія:</strong> ${event.category}</p>
+                        <p><strong>Місце:</strong> ${event.city}, ${event.district}, ${event.street}</p>
+                        <p><strong>Час:</strong> ${event.startTime} - ${event.endTime}</p>
+                        <p><strong>Телефон:</strong> ${event.phone}</p>
+                        <p><strong>Email:</strong> ${event.email}</p>
+                        <p><strong>Опис:</strong> ${event.description}</p>
+                    </div>
+                </div>
+            `;
+            eventsList.innerHTML += eventCard;
+        }
+    });
+}
+    // Виклик функції фільтрації за зміною обраної категорії
+    categoryFilter.addEventListener('change', () => {
+        filterEvents(categoryFilter.value);
+    });
+    filterEvents('all');
+});
+
+categoryFilter.addEventListener('change', () => {
+    eventsList.style.opacity = '0'; // Зникнення перед зміною
+    setTimeout(() => {
+        filterEvents(categoryFilter.value);
+        eventsList.style.opacity = '1'; // Плавне повернення
+    }, 300);
+});
+        </script>
     </main>
 
     
@@ -87,12 +214,12 @@
                 <div class="footer-logo">
                     <div class="logo">HANDY</div>
                 </div>
-                 <ul class="footer-menu">
+                <ul class="footer-menu">
                     <li><a class="footer-link" href="/index.html">Головна</a></li>
                     <li><a class="footer-link" href="#">Події</a></li>
                     <li><a class="footer-link" href="/about-us.html">Про нас</a></li>
                     <li><a class="footer-link" href="/contact.html">Контакти</a></li>
-                 </ul>
+                </ul>
             </nav>
             <address class="footer-address">
                 <ul class="adsress-list">
@@ -106,7 +233,6 @@
                 </p>
                 </div>
             </address>
-
         </div>
     </div>
 </footer>
