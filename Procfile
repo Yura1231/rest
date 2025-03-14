@@ -1,2 +1,3 @@
 release: python manage.py migrate
-web gunicorn main.wsgi:application --log-file -  
+web: gunicorn HandyProject.main.wsgi --log-file -
+
