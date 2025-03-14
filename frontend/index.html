@@ -36,7 +36,7 @@
             <div class="backdrop hidden">
                 <div class="modal">
                     <button class="modal-btn-close" type="button">
-                        <img src="/images/close.png" alt="Закрити">
+                        <img src="images/close.png" alt="Закрити">
                     </button>
                     <h2>Додати подію</h2>
                    <form id="event-form">
@@ -129,7 +129,7 @@
                     <p>Читайте корисні поради про волонтерство та допомогу в часи війни</p>
                 </div>
                 <div class="card">
-                    <img class="card-foto" src="/images/cart1.jpg" alt="Всі волонтерські можливості в одному місці">
+                    <img class="card-foto" src="images/cart1.jpg" alt="Всі волонтерські можливості в одному місці">
                     <h3>Всі волонтерські можливості в одному місці</h3>
                     <p>Знаходьте можливості у своєму місті чи онлайн, реєструйтесь та починайте творити добро.</p>
                 </div>
@@ -265,7 +265,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         try {
-            let response = await fetch("http://127.0.0.1:8000/create-event/", {
+            let response = await fetch("https://newhandy-4b950124bf06.herokuapp.com/create-event/", {
                 method: "POST",
                 body: formData,
                 headers: {
@@ -309,7 +309,7 @@ document.getElementById("event-form").addEventListener("submit", async function(
             }
 
             try {
-                let response = await fetch("http://127.0.0.1:8000/create-event/", {
+                let response = await fetch("https://newhandy-4b950124bf06.herokuapp.com/create-event/", {
                     method: "POST",
                     body: formData,
                     headers: {

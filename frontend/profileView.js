@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     
-    fetch(`http://127.0.0.1:8000/profile/${userId}/`, {
+    fetch(`https://newhandy-4b950124bf06.herokuapp.com/profile/${userId}/`, {
         method: "GET",
         headers: {
             "Authorization": `Bearer ${accessToken}`,
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         
 
         if (data.profile_picture) {
-            document.getElementById("profilePhoto").src = `http://127.0.0.1:8000${data.profile_picture}`;
+            document.getElementById("profilePhoto").src = `https://newhandy-4b950124bf06.herokuapp.com${data.profile_picture}`;
         }
 
         if (data.description) {
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Функція отримання відгуків
     async function fetchReviews() {
         try {
-            let response = await fetch(`http://127.0.0.1:8000/comments/${userId}/`, {
+            let response = await fetch(`https://newhandy-4b950124bf06.herokuapp.com/comments/${userId}/`, {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${accessToken}`,
@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             
                 commentElement.innerHTML = `
                     <div class="review-item">
-                        <img src="http://127.0.0.1:8000${comment.author_profile_picture}" alt="User Avatar" class="user-avatar">
+                        <img src="https://newhandy-4b950124bf06.herokuapp.com${comment.author_profile_picture}" alt="User Avatar" class="user-avatar">
                         <div class="review-content">
                             <span class="user-name">${comment.author_first_name}  ${comment.author_last_name}</span>
                             <p class="review-text">${comment.text}</p>
@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (!text) return alert("Коментар не може бути порожнім!");
 
         try {
-            let response = await fetch(`http://127.0.0.1:8000/comments/${userId}/`, {
+            let response = await fetch(`https://newhandy-4b950124bf06.herokuapp.com/comments/${userId}/`, {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${accessToken}`,
