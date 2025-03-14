@@ -12,16 +12,17 @@
         <div class="container">
             <div class="header-container">
                 <div class="logo">HANDY</div>
-            <nav class="header-nav">
+                <nav class="header-nav">
                     <ul class="header-menu">
-                        <li><a class= "link" href="/index.html">Головна</a></li>
-                        <li><a class= "link" href="test.html">Події</a></li>
-                        <li><a class= "link" href="/about-us.html">Про нас</a></li>
-                        <li><a class= "link" href="/instruction.html">Інструкція з використання</a></li>
+                        <li><a class="link" href="/index.html">Головна</a></li>
+                        <li><a class="link" href="test.html">Події</a></li>
+                        <li><a class="link" href="/about-us.html">Про нас</a></li>
+                        <li><a class="link" href="/instruction.html">Інструкція з використання</a></li>
                     </ul>
                 </nav>
                 <div class="auth">
-                    <a class= "link" href="/login.html">Увійти</a> | <a class= "link" href="/register-form.html">Зареєструватись</a>
+                    <a class="link" href="/login.html">Увійти</a> | 
+                    <a class="link" href="/register-form.html">Зареєструватись</a>
                 </div>
             </div>
         </div>
@@ -44,169 +45,45 @@
                 <option value="mental-health">Психологічна підтримка</option>
                 <option value="reconstruction">Відновлення інфраструктури</option>
             </select>
+
+            <p id="default-message">Незабаром будуть відображатися події, створені користувачами.</p>
+            
             <div id="events-list" class="events-list">
                 <!-- Події будуть додаватися тут динамічно -->
             </div>
         </section>
-    
-    
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const events = [
-                    {
-                        name: "Волонтерство у Львові",
-                        category: "Допомога",
-                        city: "Львів",
-                        district: "Личаківський",
-                        street: "вул. Чупринки, 110",
-                        startTime: "10:00",
-                        endTime: "14:00",
-                        phone: "+380123456789",
-                        email: "example@gmail.com",
-                        description: "Допомога у роздачі гуманітарної допомоги.",
-                        image: "https://via.placeholder.com/150"
-                    }
-                ];
-    
-                const eventsList = document.getElementById('events-list');
-    
-                events.forEach(event => {
-                    const eventCard = `
-                        <div class="event-card">
-                            <img src="${event.image}" alt="${event.name}">
-                            <div class="event-content">
-                                <h2>${event.name}</h2>
-                                <p><strong>Категорія:</strong> ${event.category}</p>
-                                <p><strong>Місце:</strong> ${event.city}, ${event.district}, ${event.street}</p>
-                                <p><strong>Час:</strong> ${event.startTime} - ${event.endTime}</p>
-                                <p><strong>Телефон:</strong> ${event.phone}</p>
-                                <p><strong>Email:</strong> ${event.email}</p>
-                                <p><strong>Опис:</strong> ${event.description}</p>
-                            </div>
-                        </div>
-                    `;
-                    eventsList.innerHTML += eventCard;
-                });
-            });
-
-            document.addEventListener('DOMContentLoaded', () => {
-                const events = [
-        {
-            name: "Волонтерство у Львові",
-            category: "Допомога",
-            city: "Львів",
-            district: "Личаківський",
-            street: "вул. Чупринки, 110",
-            startTime: "10:00",
-            endTime: "14:00",
-            phone: "+380123456789",
-            email: "example@gmail.com",
-            description: "Допомога у роздачі гуманітарної допомоги.",
-            image: "https://via.placeholder.com/150"
-        },
-        {
-            name: "Еко-акція у Львові",
-            category: "Екологія",
-            city: "Львів",
-            district: "Франківський",
-            street: "вул. Володимира Великого, 22",
-            startTime: "09:00",
-            endTime: "12:00",
-            phone: "+380987654321",
-            email: "eco-event@gmail.com",
-            description: "Прибирання парків та скверів місті.",
-            image: "https://via.placeholder.com/150"
-        }
-    ];
-
-
-    const eventsList = document.getElementById('events-list');
-    const categoryFilter = document.getElementById('category-filter');
-
-    const categoryMapping = {
-    "donate": "Донат",
-    "ecology": "Екологія",
-    "military": "Військове",
-    "help": "Допомога",
-    "education": "Освіта",
-    "medicine": "Медицина",
-    "community": "Громадська діяльність",
-    "social": "Соціальні ініціативи",
-    "emergency": "Надзвичайні ситуації",
-    "mental-health": "Психологічна підтримка",
-    "human-rights": "Права людини",
-    "reconstruction": "Відновлення інфраструктури",
-};
-
-// Функція для фільтрації подій за категорією
-function filterEvents(category) {
-    eventsList.innerHTML = ''; // Очищення списку подій перед відображенням
-    events.forEach(event => {
-        // Перевіряємо, чи обрана категорія або показуємо всі події
-        if (category === 'all' || categoryMapping[category] === event.category) {
-            const eventCard = `
-                <div class="event-card">
-                    <img src="${event.image}" alt="${event.name}">
-                    <div class="event-content">
-                        <h2>${event.name}</h2>
-                        <p><strong>Категорія:</strong> ${event.category}</p>
-                        <p><strong>Місце:</strong> ${event.city}, ${event.district}, ${event.street}</p>
-                        <p><strong>Час:</strong> ${event.startTime} - ${event.endTime}</p>
-                        <p><strong>Телефон:</strong> ${event.phone}</p>
-                        <p><strong>Email:</strong> ${event.email}</p>
-                        <p><strong>Опис:</strong> ${event.description}</p>
-                    </div>
-                </div>
-            `;
-            eventsList.innerHTML += eventCard;
-        }
-    });
-}
-    // Виклик функції фільтрації за зміною обраної категорії
-    categoryFilter.addEventListener('change', () => {
-        filterEvents(categoryFilter.value);
-    });
-    filterEvents('all');
-});
-
-categoryFilter.addEventListener('change', () => {
-    eventsList.style.opacity = '0'; // Зникнення перед зміною
-    setTimeout(() => {
-        filterEvents(categoryFilter.value);
-        eventsList.style.opacity = '1'; // Плавне повернення
-    }, 300);
-});
-        </script>
     </main>
 
-<footer class="footer">
-    <div class="container">
-        <div class="footer-container">
-            <nav class="footer-nav">
-                <div class="footer-logo">
-                    <div class="logo">HANDY</div>
-                </div>
-                <ul class="footer-menu">
-                    <li><a class="footer-link" href="/index.html">Головна</a></li>
-                    <li><a class="footer-link" href="#">Події</a></li>
-                    <li><a class="footer-link" href="/about-us.html">Про нас</a></li>
-                    <li><a class="footer-link" href="instruction.html">Інструкція з використання</a></li>
-                </ul>
-            </nav>
-            <address class="footer-address">
-                <ul class="adsress-list">
-                    <li><a class="address-link" href="tel:+380960000007">+ 38 (096) 000 00 07</a></li>
-                    <li><a class="address-link" href="mailto:handysupport@gmail.com">handysupport@gmail.com</a></li>
-                </ul>
-                <div class="address-info">
-                    <a class="address-link" href="" target="_blank">Політика конфійдеційності</a>
-                <p class="address-copyright">
-                    &copy; Дані захищено
-                </p>
-                </div>
-            </address>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <nav class="footer-nav">
+                    <div class="footer-logo">
+                        <div class="logo">HANDY</div>
+                    </div>
+                    <ul class="footer-menu">
+                        <li><a class="footer-link" href="/index.html">Головна</a></li>
+                        <li><a class="footer-link" href="#">Події</a></li>
+                        <li><a class="footer-link" href="/about-us.html">Про нас</a></li>
+                        <li><a class="footer-link" href="instruction.html">Інструкція з використання</a></li>
+                    </ul>
+                </nav>
+                <address class="footer-address">
+                    <ul class="address-list">
+                        <li><a class="address-link" href="tel:+380960000007">+ 38 (096) 000 00 07</a></li>
+                        <li><a class="address-link" href="mailto:handysupport@gmail.com">handysupport@gmail.com</a></li>
+                    </ul>
+                    <div class="address-info">
+                        <a class="address-link" href="" target="_blank">Політика конфіденційності</a>
+                        <p class="address-copyright">
+                            &copy; Дані захищено
+                        </p>
+                    </div>
+                </address>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
+
+    <script src="test.js"></script>
 </body>
 </html>
