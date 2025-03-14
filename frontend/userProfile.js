@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 async function loadUserEvents() {
     try {
-        let response = await fetch("http://127.0.0.1:8000/my-events/", {
+        let response = await fetch("https://newhandy-4b950124bf06.herokuapp.com/my-events/", {
             method: "GET",
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("access_token"),
@@ -78,7 +78,7 @@ async function deleteEvent(eventId) {
     }
 
     try {
-        let response = await fetch(`http://127.0.0.1:8000/delete/${eventId}/`, {
+        let response = await fetch(`https://newhandy-4b950124bf06.herokuapp.com/delete/${eventId}/`, {
             method: "DELETE",
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("access_token"),
@@ -102,7 +102,7 @@ async function deleteEvent(eventId) {
 
 async function loadSubscribedEvents() {
     try {
-        let response = await fetch("http://127.0.0.1:8000/my-subscriptions/", {
+        let response = await fetch("https://newhandy-4b950124bf06.herokuapp.com/my-subscriptions/", {
             method: "GET",
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("access_token"),
@@ -133,7 +133,7 @@ async function loadSubscribedEvents() {
         
         <span class="event-date">${event.start_date} - ${event.end_date}</span>
     </div>
-    <img src="http://127.0.0.1:8000${event.image}" alt="${event.title}" >
+    <img src="https://newhandy-4b950124bf06.herokuapp.com${event.image}" alt="${event.title}" >
     <p><strong>Місце:</strong> ${event.location_full}</p>
     <p><strong>Категорія:</strong> ${event.category}</p>
     <p class="event-description">${event.description}</p>
@@ -255,7 +255,7 @@ document.querySelectorAll('.edit-btn').forEach(btn => {
                 const token = localStorage.getItem('access_token'); // Додаємо токен аутентифікації
 
                 try {
-                    let response = await fetch('https://newsse-852faa67b80a.herokuapp.com/update-profile/', {
+                    let response = await fetch('https://newhandy-4b950124bf06.herokuapp.com/update-profile/', {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json',
@@ -289,7 +289,7 @@ document.getElementById("photoInput").addEventListener("change", function(event)
             const token = localStorage.getItem('access_token');
 
             try {
-                let response = await fetch('https://newsse-852faa67b80a.herokuapp.com/update-profile/', {
+                let response = await fetch('https://newhandy-4b950124bf06.herokuapp.com/update-profile/', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -322,7 +322,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    fetch("https://newsse-852faa67b80a.herokuapp.com/profile/", {
+    fetch("https://newhandy-4b950124bf06.herokuapp.com/profile/", {
         method: "GET",
         headers: {
             "Authorization": `Bearer ${accessToken}`,
@@ -343,7 +343,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("last_name").value = data.last_name;
 
         if (data.profile_picture) {
-            document.getElementById("profilePhoto").src = `https://newsse-852faa67b80a.herokuapp.com${data.profile_picture}`;
+            document.getElementById("profilePhoto").src = `https://newhandy-4b950124bf06.herokuapp.com${data.profile_picture}`;
         }
 
         if (data.description) {
@@ -366,7 +366,7 @@ document.getElementById('help-btn').addEventListener('click', function() {
 
 async function loadUserComments() {
     try {
-        let response = await fetch("http://127.0.0.1:8000/comments/", {
+        let response = await fetch("https://newhandy-4b950124bf06.herokuapp.com/comments/", {
             method: "GET",
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("access_token"),
@@ -400,7 +400,7 @@ async function loadUserComments() {
     
             commentElement.innerHTML = `
                 <div class="review-item">
-                    <img src="http://127.0.0.1:8000${comment.author_profile_picture}" alt="User Avatar" class="user-avatar">
+                    <img src="https://newhandy-4b950124bf06.herokuapp.com${comment.author_profile_picture}" alt="User Avatar" class="user-avatar">
                     <div class="review-content">
                         <span class="user-name">${comment.author_first_name} ${comment.author_last_name}</span>
                         <p class="review-text">${comment.text}</p>

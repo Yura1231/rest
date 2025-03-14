@@ -55,7 +55,7 @@
     const eventsList = document.getElementById('events-list');
 
     try {
-        let response = await fetch("http://127.0.0.1:8000/events/", {
+        let response = await fetch("https://newhandy-4b950124bf06.herokuapp.com/events/", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -80,7 +80,7 @@
 
             eventCards += `
                 <div class="event-card">
-                    <img src="http://127.0.0.1:8000${event.image}" alt="${event.title}">
+                    <img src="https://newhandy-4b950124bf06.herokuapp.com${event.image}" alt="${event.title}">
                     <div class="event-content">
                         <h2>${event.title}</h2>
                         <p><strong>Категорія:</strong> ${event.category}</p>
@@ -136,7 +136,7 @@ async function checkRegistration(eventId) {
     if (!token) return false;
 
     try {
-        const response = await fetch(`http://127.0.0.1:8000/events/${eventId}/check-registration/`, {
+        const response = await fetch(`https://newhandy-4b950124bf06.herokuapp.com/events/${eventId}/check-registration/`, {
             method: "GET",
             headers: {
                 "Authorization": "Bearer " + token,
@@ -165,7 +165,7 @@ async function subscribe(eventId) {
     }
 
     try {
-        const response = await fetch(`http://127.0.0.1:8000/events/${eventId}/subscribe/`, {
+        const response = await fetch(`https://newhandy-4b950124bf06.herokuapp.com/events/${eventId}/subscribe/`, {
             method: "POST",
             headers: {
                 "Authorization": "Bearer " + token,
@@ -189,7 +189,7 @@ async function unsubscribe(eventId) {
     }
 
     try {
-        const response = await fetch(`http://127.0.0.1:8000/events/${eventId}/unsubscribe/`, {
+        const response = await fetch(`https://newhandy-4b950124bf06.herokuapp.com/events/${eventId}/unsubscribe/`, {
             method: "POST",
             headers: {
                 "Authorization": "Bearer " + token,
