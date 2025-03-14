@@ -255,7 +255,7 @@ document.querySelectorAll('.edit-btn').forEach(btn => {
                 const token = localStorage.getItem('access_token'); // Додаємо токен аутентифікації
 
                 try {
-                    let response = await fetch('http://localhost:8000/update-profile/', {
+                    let response = await fetch('https://newsse-852faa67b80a.herokuapp.com/update-profile/', {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json',
@@ -289,7 +289,7 @@ document.getElementById("photoInput").addEventListener("change", function(event)
             const token = localStorage.getItem('access_token');
 
             try {
-                let response = await fetch('http://localhost:8000/update-profile/', {
+                let response = await fetch('https://newsse-852faa67b80a.herokuapp.com/update-profile/', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -322,7 +322,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    fetch("http://127.0.0.1:8000/profile/", {
+    fetch("https://newsse-852faa67b80a.herokuapp.com/profile/", {
         method: "GET",
         headers: {
             "Authorization": `Bearer ${accessToken}`,
@@ -343,7 +343,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("last_name").value = data.last_name;
 
         if (data.profile_picture) {
-            document.getElementById("profilePhoto").src = `http://127.0.0.1:8000${data.profile_picture}`;
+            document.getElementById("profilePhoto").src = `https://newsse-852faa67b80a.herokuapp.com${data.profile_picture}`;
         }
 
         if (data.description) {
