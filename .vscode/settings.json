@@ -1,0 +1,19 @@
+{
+    "sqltools.connections": [
+        {
+            "pgOptions": {
+                "ssl": {
+                    "rejectUnauthorized": false
+                }
+            },
+            "previewLimit": 50,
+            "server": "handydb-handyv.d.aivencloud.com",
+            "port": 17802,
+            "askForPassword": true,
+            "driver": "PostgreSQL",
+            "name": "HANDY",
+            "database": "handy",
+            "username": "avnadmin"
+        }
+    ]
+}
