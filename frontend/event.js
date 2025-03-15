@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <div class="event-details">
                         <p class="event-category">${categoryMapping[event.category] || event.category}</p>
                         
-                        <a href="https://newhandy-4b950124bf06.herokuapp.com/profileView.html?userId=${event.posted_by}" class="user-profile-link">
+                        <a href="https://rest-jade.vercel.app/profileView.html?userId=${event.posted_by}" class="user-profile-link">
                                     <img class="author-pic" src="https://newhandy-4b950124bf06.herokuapp.com${event.posted_by_profile_picture || 'https://via.placeholder.com/50'}" alt="Profile Picture">
                     </div>
                 </div>
