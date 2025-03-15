@@ -3,7 +3,8 @@
         {
             "pgOptions": {
                 "ssl": {
-                    "rejectUnauthorized": false
+                    "rejectUnauthorized": false,
+                    "requestCert": false
                 }
             },
             "previewLimit": 50,
@@ -11,7 +12,7 @@
             "port": 17802,
             "askForPassword": true,
             "driver": "PostgreSQL",
-            "name": "HANDY",
+            "name": "Handy",
             "database": "handy",
             "username": "avnadmin"
         }

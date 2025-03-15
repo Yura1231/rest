@@ -10,12 +10,17 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 from datetime import timedelta
+import dj_database_url
+from decouple import config
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+MEDIA_URL = '/media/'  # URL для доступу до медіафайлів
+MEDIA_ROOT = BASE_DIR / 'media'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -25,7 +30,7 @@ SECRET_KEY = 'p!9y4%37oic(##bxmvz%a0gfbr#+dfcr)!5wkc0^mq=$c$!cmy'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -40,9 +45,14 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
-    'API.apps.APIConfig'
+    'HANDY.apps.HANDYConfig'
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'HANDY.authentication.CustomUserBackend',
+    'django.contrib.auth.backends.ModelBackend',
+    
+]
 
 CORS_ALLOW_ALL_ORIGINS = True 
 
@@ -57,7 +67,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'main.urls'
+ROOT_URLCONF = 'HandyProject.urls'
 
 TEMPLATES = [
     {
@@ -75,19 +85,31 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'main.wsgi.application'
+WSGI_APPLICATION = 'HandyProject.wsgi.application'
 
-
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"  # Або інший поштовий сервер
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "oetoped@gmail.com"  # Твоя пошта
+EMAIL_HOST_PASSWORD = "ewqb ooxc hhsw okuh"  # Пароль або App Password для Gmail
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'handy',
+        'USER': 'avnadmin',
+        'PASSWORD': 'AVNS_5iLGlI4HOeNjdPp2q1L',
+        'HOST': 'handydb-handyv.d.aivencloud.com',
+        'PORT': '17802',
+        'OPTIONS': {
+            'sslmode': 'require',
+        },
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -108,6 +130,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -119,6 +142,9 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
+0
+AUTH_USER_MODEL = 'HANDY.User'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -138,3 +164,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Використання WhiteNoise для стискання та кешування статичних файлів
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
