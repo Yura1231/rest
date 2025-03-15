@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Підтвердження підписки</title>
+    <link href="https://fonts.googleapis.com/css2?family=Play&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-display: swap;
+            font-family: 'Play';
+            font-style: normal;
+            font-weight: 400;
+            src: url('../fonts/play-v19-latin-regular.woff2') format('woff2');
+        }
+
+        body {
+            font-family: 'Play';
+            font-weight: 400;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: url('images/cart1.jpg') no-repeat center center/cover;
+            backdrop-filter: blur(8px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            width: 300px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #32CD32;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .message {
+            margin: 40px 0 20px;
+            font-size: 24px;
+            color: #555;
+        }
+
+        .confirm-btn {
+            background-color: #32CD32;
+            color: #ffffff;
+            font-weight: 600;
+            border: none;
+            padding: 15px 20px;
+            cursor: pointer;
+            border-radius: 25px;
+            font-size: 16px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .confirm-btn:hover {
+            background: #218838;
+        }
+
+        .privacy-policy {
+            margin-top: 15px;
+            font-size: 12px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">Handy</div>
+        <div class="message">Будь ласка, підтвердіть свою підписку на подію.</div>
+        <button class="confirm-btn" onclick="confirmSubscription()">Підтвердити</button>
+        <div class="privacy-policy">Підтверджуючи підписку, ви погоджуєтеся з політикою конфіденційності платформи HANDY.</div>
+    </div>
+    
+    <script>
+        function confirmSubscription() {
+            alert('Підписку підтверджено!');
+        }
+    </script>
+</body>
+</html>

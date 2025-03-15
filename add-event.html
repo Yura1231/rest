@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма додавання події</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button class="button modal-btn-open" type="button">Додати подію</button>
+
+    <div class="backdrop">
+        <div class="modal">
+            <button class="modal-btn-close" type="button">
+                <img src="/images/close.png" alt="Close">
+            </button>
+            <h2>Додати подію</h2>
+        <form name="modal-form" autocomplete="off" novalidate>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="title">Назва</label>
+                    <input type="text" id="title" name="title" placeholder="Введіть назву події">
+                </div>
+                
+                <div class="form-group">
+                    <label for="category">Категорія</label>
+                    <select id="category" name="category">
+                        <option value="">Оберіть категорію</option>
+                        <option value="donate">Донат</option>
+                        <option value="ecology">Екологія</option>
+                        <option value="military">Військове</option>
+                        <option value="help">Допомога</option>
+                        <option value="education">Освіта</option>
+                        <option value="medicine">Медицина</option>
+                        <option value="community">Громадська діяльність</option>
+                        <option value="social">Соціальні ініціативи</option>
+                        <option value="emergency">Надзвичайні ситуації</option>
+                        <option value="mental-health">Психологічна підтримка</option>
+                        <option value="reconstruction">Відновлення інфраструктури</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="city">Додайте місто, район</label>
+                    <input type="text" id="city" name="city" placeholder="Наприклад, Львів, Личаківська">
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Додайте вулицю, будинок</label>
+                    <input type="text" id="address" name="address" placeholder="Наприклад, вул. Чупринки, 110">
+                </div>
+
+                <div class="form-group">
+                    <label for="start-date">Вкажіть дату початку події</label>
+                    <input type="date" id="start-date" name="start-date">
+                </div>
+
+                <div class="form-group">
+                    <label for="end-date">Вкажіть дату завершення події</label>
+                    <input type="date" id="end-date" name="end-date">
+                </div>
+
+                <div class="form-group">
+                    <label for="start-time">Вкажіть час початку події</label>
+                    <input type="time" id="start-time" name="start-time">
+                </div>
+
+                <div class="form-group">
+                    <label for="end-time">Вкажіть час завершення події</label>
+                    <input type="time" id="end-time" name="end-time">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Вкажіть номер телефону для зворотнього зв’язку</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+380">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Вкажіть e-mail для зв’язку</label>
+                    <input type="email" id="email" name="email" placeholder="example@email.com">
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="description">Додайте опис</label>
+                    <textarea id="description" name="description" placeholder="Опишіть з чим вам потрібна допомога"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Додайте фото</label>
+                    <input type="file" id="photo" name="photo">
+                </div>
+                <button type="submit" class="submit-btn button" >Опублікувати</button>
+            </div>
+        </form>
+        </div>
+    </div>
+    <script src="/script.js"></script>
+</body>
+</html>
