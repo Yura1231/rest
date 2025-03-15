@@ -81,10 +81,16 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class Event(models.Model):
     CATEGORY_CHOICES = [
-        ('social', 'Соціальна допомога'),
-        ('medical', 'Медична допомога'),
-        ('environment', 'Екологічна допомога'),
-        ('humanitarian', 'Гуманітарна допомога')
+        ('donate', 'Донат'),
+        ('ecology', 'Екологія'),
+        ('military', 'Військове'),
+        ('help', 'Допомога'),
+        ('medicine', 'Медицина'),
+        ('community', 'Громадська діяльність'),
+        ('social', 'Соціальні ініціативи'),
+        ('emergency', 'Надзвичайні ситуації'),
+        ('mental-health', 'Психологічна підтримка'),
+        ('reconstruction', 'Відновлення інфраструктури'),
     ]
 
     title = models.CharField(max_length=255)
