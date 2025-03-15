@@ -36,8 +36,8 @@ from HANDY.controllers.event_views import (
     subscribe_to_post,
     unsubscribe,
     my_subscriptions,
-    send_subscription_email,
-    confirm_subscription,
+    
+    
     get_events_by_category
     
 )
@@ -56,8 +56,8 @@ urlpatterns = [
     path('events/<int:event_id>/', subscribe_to_post, name='subscribe_to_post'),
     path('unsubscribe/<int:event_id>/', unsubscribe, name='unsubscribe'),
     path('my-subscriptions/', my_subscriptions, name='my_subscriptions'),
-    path("subscribe/<int:event_id>/", send_subscription_email, name="subscribe_email"),
-    path("confirm-subscription/<str:token>/", confirm_subscription, name="confirm_subscription"),
+    
+    
     path("profile/<int:user_id>/", get_user_profile, name="get_user_profile"),
     path("comments/<int:user_id>/", user_comments, name="user-comments"),
     path('delete/<int:event_id>/', delete_event, name='delete_event'),

@@ -122,75 +122,8 @@ def my_subscriptions(request):
 
 
 
-@api_view(["POST"])
-@permission_classes([IsAuthenticated])
-def send_subscription_email(request, event_id):
-    user = request.user
-    try:
-        event = Event.objects.get(id=event_id)
-    except Event.DoesNotExist:
-        return Response({"error": "Подія не знайдена"}, status=404)
-
-    # Генеруємо унікальний токен
-    token = str(uuid.uuid4())
-
-    # Зберігаємо токен у базі
-    participation, created = UserEventParticipation.objects.get_or_create(
-        user=user, event=event, defaults={"token": token}
-    )
-
-    # Якщо запис вже існує, оновлюємо токен
-    if not created:
-        participation.token = token
-        participation.save()
-
-    # Формуємо URL для підтвердження
-    confirm_url = request.build_absolute_uri(
-        reverse("confirm_subscription", kwargs={"token": token})
-    )
-
-    # Формуємо повідомлення
-    subject = f"Підтвердження підписки на подію: {event.title}"
-    message = f"""
-    Ви отримали це повідомлення, бо хочете підписатися на подію: {event.title}.
-
-    📅 Дата: {event.start_date} - {event.end_date}
-    📍 Місце: {event.location_full}
-    ℹ️ Опис: {event.description}
-
-    Для підтвердження підписки натисніть на кнопку:
-    {confirm_url}
-
-    Якщо ви не надсилали цей запит, просто проігноруйте цей лист.
-    """
-
-    # Відправляємо email
-    send_mail(
-        subject,
-        message,
-        settings.DEFAULT_FROM_EMAIL,
-        [user.email],
-        fail_silently=False,
-    )
-
-    return Response({"message": "Лист з підтвердженням відправлено на вашу пошту."})
 
 
-@api_view(["GET"])
-
-def confirm_subscription(request, token):
-    try:
-        participation = UserEventParticipation.objects.get(token=token)
-    except UserEventParticipation.DoesNotExist:
-        return Response({"error": "Невірний або застарілий токен"}, status=400)
-
-    if participation.is_confirmed:
-        return Response({"message": "Ви вже підтвердили участь у події."})
-
-    participation.is_confirmed = True
-    participation.save()
-
-    return Response({"message": "Ви успішно підтвердили участь у події!"})
 
 
 
