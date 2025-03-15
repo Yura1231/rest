@@ -37,7 +37,7 @@ html {
     padding: 0;
 }
 
-  * {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -55,7 +55,6 @@ body {
     font-weight: 400;
     margin: 0;
     padding: 0;
-    
 }
 
 main {
@@ -68,6 +67,7 @@ main {
     margin: 0 auto;
     padding: 0;
 }
+
 .form-container {
     background: #e0f7e0;
     padding: 20px;
@@ -147,7 +147,6 @@ border-color: #20b820;
 .form-link {
     text-underline-offset: 2px;
     color: #218838;
-
 }
 
 .login-link {
@@ -189,7 +188,6 @@ body {
     margin: 0 auto;
     padding: 20px;
     width: 100%;
-    
 }
 
 .header {
@@ -198,7 +196,6 @@ body {
     left: 0;
     width: 100%;
     padding-top: 32px;
-    
 }
 
 .header-container {
@@ -324,7 +321,6 @@ main {
     border-radius: 25px;
     border: 2px solid transparent;
     transition: all 0.3s ease;
-
 }
 
 .cta button:hover {
@@ -445,11 +441,11 @@ main {
 }
 
 .faq-section {
-    display: none; /* Приховуємо всі секції */
+    display: none;
 }
 
 .faq-section.active {
-    display: block; /* Показуємо тільки активну секцію */
+    display: block;
 }
 
 .faq-btn {
@@ -563,7 +559,6 @@ main {
 .footer-link:hover {
     color: #32CD32;
     font-weight: 1000;
-
 }
 
 .adsress-list, .adsress-info {
@@ -579,7 +574,6 @@ main {
 
 .address-link:hover {
     color: #32CD32;
-
 }
 
 .address-icon {
@@ -691,7 +685,6 @@ h2 {
     color: black;
 }
 
-
 .how-we-work {
     padding: 50px 20px;
     text-align: center;
@@ -721,7 +714,6 @@ h2 {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: transform 0.3s ease-in-out;
-
 }
 
 .step:hover {
@@ -838,112 +830,6 @@ h2 {
     border-color: #20b820;
 }
 
-
-
-
-/* ПОДІЇЇ */
-h1 {
-    text-align: center;
-    font-size: 28px;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-.events-container {
-    max-width: 85%;
-    min-height: 250px;
-    margin: 50px auto;
-    border: 1px solid var(--color-toxic);
-    border-radius: 25px;
-    padding: 20px;
-    text-align: center;
-}
-
-.events-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 20px;
-}
-
-.event-card {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
-
-.event-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.event-content {
-    padding: 20px;
-}
-
-/* ФІЛЬТРАЦІЯ ПОДІЙ ЗА КАТЕГОРІЯМИ */
-.filter-container {
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: flex-start;
-}
-
-#category-filter {
-    padding: 10px;
-    border: 2px solid #20b820;
-    border-radius: 8px;
-    background: #f8f9fc;
-    font-size: 16px;
-    color: #333;
-    outline: none;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    margin-top: 10px;
-    margin-bottom: 20px;
-}
-
-#category-filter:hover {
-    border-color: #32CD32;
-    background: #e7efff;
-}
-
-#category-filter:focus {
-    border-color: #32CD32;
-    background: #fff;
-    outline: none;
-}
-
-#category-filter option {
-    padding: 10px;
-    background: white;
-    color: #333;
-}
-
-.events-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    transition: opacity 0.3s ease-in-out;
-    justify-content: center;
-}
-
-.event-card {
-    background: #fff;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    width: 100%;
-    max-width: 80%;
-}
-
-.event-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
 
 
 
