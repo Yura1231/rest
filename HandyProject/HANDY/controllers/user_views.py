@@ -145,7 +145,7 @@ def update_profile(request):
     user = request.user
     data = request.data
     
-    # Оновлення основних даних
+    
     user.first_name = data.get('first_name', user.first_name)
     user.last_name = data.get('last_name', user.last_name)
     user.email = data.get('email', user.email)
@@ -153,7 +153,7 @@ def update_profile(request):
     user.description = data.get('description', user.description)
     
 
-    # Обробка фото (якщо є)
+    
     profile_picture = data.get('profile_picture')
     if profile_picture:
         format, imgstr = profile_picture.split(';base64,')
