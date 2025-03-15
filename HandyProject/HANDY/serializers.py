@@ -33,7 +33,7 @@ class EventSerializer(serializers.ModelSerializer):
     posted_by_last_name = serializers.CharField(source='posted_by.last_name', read_only=True)
     class Meta:
         model = Event
-        fields = '__all__'  # Включаємо всі поля моделі
+        fields = '__all__'  
         read_only_fields = ['posted_by', 'is_approved']
 
     def validate(self, data):

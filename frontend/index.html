@@ -31,9 +31,9 @@
             <div class="container">
                 <h1>HANDY</h1>
             <p>Долучайся. Допомагай. Змінюй!</p>
-            <button class="button modal-btn-open"  type="button">Додати подію</button>
+            <button class="button modal-btn-open" id="modal-btn-open" style="display:none;" type="button">Додати подію</button>
 
-            <div class="backdrop hidden">
+            <div class="backdrop is-hidden">
                 <div class="modal">
                     <button class="modal-btn-close" type="button">
                         <img src="images/close.png" alt="Закрити">
@@ -379,7 +379,7 @@ document.getElementById("event-form").addEventListener("submit", async function(
         document.getElementById('login-btn').style.display = 'none';
         document.getElementById('logout-btn').style.display = 'inline-block';
         document.getElementById('profile-btn').style.display = 'inline-block';
-
+        document.getElementById('modal-btn-open').style.display = 'inline-block';
         
     }
 
