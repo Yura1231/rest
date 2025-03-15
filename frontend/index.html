@@ -31,12 +31,12 @@
             <div class="container">
                 <h1>HANDY</h1>
             <p>Долучайся. Допомагай. Змінюй!</p>
-            <button class="button modal-btn-open"  type="button">Додати подію</button>
+            <button class="button modal-btn-open" id="modal-btn-open"  type="button" style="display:none;">Додати подію</button>
 
-            <div class="backdrop hidden">
+            <div class="backdrop is-hidden">
                 <div class="modal">
                     <button class="modal-btn-close" type="button">
-                        <img src="images/close.png" alt="Закрити">
+                        <img src="/images/close.png" alt="Закрити">
                     </button>
                     <h2>Додати подію</h2>
                    <form id="event-form">
@@ -50,10 +50,17 @@
                     <label for="category">Категорія</label>
                     <select id="category" name="category" required>
                         <option value="">Оберіть категорію</option>
-                        <option value="social">Соціальна допомога</option>
-                        <option value="medical">Медична допомога</option>
-                        <option value="environment">Екологічна допомога</option>
-                        <option value="humanitarian">Гуманітарна допомога</option>
+                        <option value="donate">Донат</option>
+                        <option value="ecology">Екологія</option>
+                        <option value="military">Військове</option>
+                        <option value="help">Допомога</option>
+                        <option value="education">Освіта</option>
+                        <option value="medicine">Медицина</option>
+                        <option value="community">Громадська діяльність</option>
+                        <option value="social">Соціальні ініціативи</option>
+                        <option value="emergency">Надзвичайні ситуації</option>
+                        <option value="mental-health">Психологічна підтримка</option>
+                        <option value="reconstruction">Відновлення інфраструктури</option>
                     </select>
                 </div>
 
@@ -129,7 +136,7 @@
                     <p>Читайте корисні поради про волонтерство та допомогу в часи війни</p>
                 </div>
                 <div class="card">
-                    <img class="card-foto" src="images/cart1.jpg" alt="Всі волонтерські можливості в одному місці">
+                    <img class="card-foto" src="/images/cart1.jpg" alt="Всі волонтерські можливості в одному місці">
                     <h3>Всі волонтерські можливості в одному місці</h3>
                     <p>Знаходьте можливості у своєму місті чи онлайн, реєструйтесь та починайте творити добро.</p>
                 </div>
@@ -265,7 +272,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         try {
-            let response = await fetch("https://newhandy-4b950124bf06.herokuapp.com/create-event/", {
+            let response = await fetch("https://newsse-852faa67b80a.herokuapp.com/create-event/", {
                 method: "POST",
                 body: formData,
                 headers: {
@@ -309,7 +316,7 @@ document.getElementById("event-form").addEventListener("submit", async function(
             }
 
             try {
-                let response = await fetch("https://newhandy-4b950124bf06.herokuapp.com/create-event/", {
+                let response = await fetch("https://newsse-852faa67b80a.herokuapp.com/create-event/", {
                     method: "POST",
                     body: formData,
                     headers: {
@@ -372,6 +379,7 @@ document.getElementById("event-form").addEventListener("submit", async function(
         document.getElementById('login-btn').style.display = 'none';
         document.getElementById('logout-btn').style.display = 'inline-block';
         document.getElementById('profile-btn').style.display = 'inline-block';
+        document.getElementById('modal-btn-open').style.display = 'inline-block';
 
         
     }
