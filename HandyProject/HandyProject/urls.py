@@ -38,6 +38,7 @@ from HANDY.controllers.event_views import (
     my_subscriptions,
     send_subscription_email,
     confirm_subscription,
+    get_events_by_category
     
 )
 from django.conf import settings
@@ -62,6 +63,7 @@ urlpatterns = [
     path('delete/<int:event_id>/', delete_event, name='delete_event'),
     path('users/<int:user_id>/comments/', get_user_comments, name='user-comments'),
     path('comments/', user_commentsss, name='user_commentsss'),
+    path('api/events/', get_events_by_category, name='get_events_by_category'),
    
    
 ]  

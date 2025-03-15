@@ -191,3 +191,17 @@ def confirm_subscription(request, token):
     participation.save()
 
     return Response({"message": "Ви успішно підтвердили участь у події!"})
+
+
+
+@api_view(['GET'])
+def get_events_by_category(request):
+    category = request.GET.get('category', None)  # Отримуємо категорію з параметрів запиту
+    if category:
+        events = Event.objects.filter(category=category)  # Фільтруємо події
+    else:
+        events = Event.objects.all()
+    
+    serializer = EventSerializer(events, many=True)
+    
+    return JsonResponse(serializer.data, safe=False)
