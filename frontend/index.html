@@ -20,7 +20,9 @@
                     </ul>
                 </nav>
                 <div class="auth">
-                    <a class= "link" href="login.html" id="login-btn"  >Увійти</a> | <a class= "link" href="/register-form.html" id="register-btn">Зареєструватись</a> | <button type="button" id="logout-btn" style="display:none;">Вихід</button> <a class= "link" href="userProfile.html" id="profile-btn" style="display: none;" >Профіль </a>
+                    <a class= "link" href="login.html" id="login-btn"  >Увійти</a> | <a class= "link" href="/register-form.html" id="register-btn">Зареєструватись</a>
+                    <a class= "link" href="/index.html" id="logout-btn" style="display: none;">Вихід  </a></button>|
+                    <a class= "link" href="userProfile.html" id="profile-btn" style="display: none;" >Профіль </a>
                 </div>
             </div>
         </div>
@@ -39,7 +41,7 @@
                         <img src="/images/close.png" alt="Закрити">
                     </button>
                     <h2>Додати подію</h2>
-                   <form id="event-form">
+                <form id="event-form">
             <div class="form-grid">
                 <div class="form-group">
                     <label for="title">Назва</label>
@@ -156,7 +158,6 @@
             </div>
         </section>
 
-
         <div class="container">
             <h1 class="faq-h1">Питання та Відповіді</h1>
             <div class="faq">
@@ -179,7 +180,7 @@
                             <div class="faq-answer">Не обов'язково, але наявність навичок може бути корисною.</div>
                         </div>
                     </div>
-        
+
                     <div id="general-faq" class="faq-section">
                         <div class="faq-item">
                             <div class="faq-question">Що таке платформа і для чого вона потрібна?</div>
@@ -229,7 +230,6 @@ const toggleModal = () => modal.classList.toggle('is-hidden');
 modalBtnOpen.addEventListener('click', toggleModal);
 modalBtnClose.addEventListener('click', toggleModal);
 
-
 document.addEventListener("DOMContentLoaded", () => {
     const modal = document.querySelector(".backdrop");
     const openModalBtn = document.querySelector(".modal-btn-open");
@@ -256,7 +256,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Відправка форми
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
-
         let formData = new FormData(form);
         let photo = document.getElementById("photo").files[0];
 
@@ -331,7 +330,6 @@ document.getElementById("event-form").addEventListener("submit", async function(
         </script>
     </main>
 
-
     <footer class="footer">
         <div class="container">
             <div class="footer-container">
@@ -365,18 +363,13 @@ document.getElementById("event-form").addEventListener("submit", async function(
     <script>
         document.addEventListener('DOMContentLoaded', function() {
     const accessToken = localStorage.getItem('access_token');
-   
 
     if (accessToken) {
         document.getElementById('register-btn').style.display = 'none';
         document.getElementById('login-btn').style.display = 'none';
         document.getElementById('logout-btn').style.display = 'inline-block';
         document.getElementById('profile-btn').style.display = 'inline-block';
-
-        
     }
-
-    
 });
 
 document.getElementById('logout-btn').addEventListener('click', function () {
@@ -385,15 +378,11 @@ document.getElementById('logout-btn').addEventListener('click', function () {
     localStorage.removeItem('refresh_token');
     
     location.reload();
-
-    
-    
 });
 
 document.getElementById('profile-btn').addEventListener('click', function() {
     window.location.href = 'profile.html';
 });
-
     </script>
 </body>
 </html>
