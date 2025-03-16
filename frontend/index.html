@@ -233,14 +233,12 @@
 
     buttons.forEach(button => {
         button.addEventListener("click", function () {
-            // Видаляємо клас active у всіх кнопок
+            
             buttons.forEach(btn => btn.classList.remove("active"));
             this.classList.add("active");
 
-            // Приховуємо всі секції
+            
             sections.forEach(section => section.classList.remove("active"));
-
-            // Відображаємо вибрану секцію
             const targetId = this.getAttribute("data-target");
             document.getElementById(targetId).classList.add("active");
         });
@@ -263,24 +261,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeModalBtn = document.querySelector(".modal-btn-close");
     const form = document.getElementById("modal-event-form");
 
-    // Відкриття модального вікна
+    
     openModalBtn.addEventListener("click", () => {
         modal.classList.remove("hidden");
     });
 
-    // Закриття модального вікна
+    
     closeModalBtn.addEventListener("click", () => {
         modal.classList.add("hidden");
     });
 
-    // Закриття при кліку за межами модального вікна
+    
     modal.addEventListener("click", (event) => {
         if (event.target === modal) {
             modal.classList.add("hidden");
         }
     });
 
-    // Відправка форми
+    
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
@@ -403,6 +401,7 @@ document.getElementById("event-form").addEventListener("submit", async function(
 
     document.getElementById('logout-btn').style.display = 'inline-block';
     document.getElementById('profile-btn').style.display = 'inline-block';
+    document.getElementById('modal-btn-open').style.display = 'inline-block';
 }
 });
 document.getElementById('logout-btn').addEventListener('click', function (event) {

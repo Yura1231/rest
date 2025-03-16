@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener('DOMContentLoaded', async () => {
     const urlParams = new URLSearchParams(window.location.search);
-    const userId = urlParams.get('userId'); // Отримуємо userId з URL
+    const userId = urlParams.get('userId'); 
     const accessToken = localStorage.getItem("access_token"); 
 
     if (!accessToken) {
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     if (!userId) {
-        // Якщо userId не передано в URL, перенаправляємо на головну
+        
         window.location.href = 'index.html';
         return;
     }
@@ -84,11 +84,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     const urlParams = new URLSearchParams(window.location.search);
-    const userId = urlParams.get("userId"); // Переконайтеся, що параметр в URL саме "userId"
-    console.log("userId:", userId);  // Отримуємо ID користувача з URL
+    const userId = urlParams.get("userId"); 
+    console.log("userId:", userId);  
     const accessToken = localStorage.getItem("access_token"); 
 
-    // Функція отримання відгуків
+    
     async function fetchReviews() {
         try {
             let response = await fetch(`https://newhandy-4b950124bf06.herokuapp.com/comments/${userId}/`, {
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             let comments = await response.json();
 
-            reviewsContainer.innerHTML = ""; // Очищуємо контейнер перед додаванням
+            reviewsContainer.innerHTML = ""; 
 
             if (comments.length === 0) {
                 reviewsContainer.innerHTML = `<div class="content-box default-text">Відгуки про користувача відсутні.</div>`;
@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     }
 
-    // Функція надсилання відгуку
+    
     publishBtn.addEventListener("click", async () => {
         const text = commentInput.value.trim();
         if (!text) return alert("Коментар не може бути порожнім!");
@@ -151,8 +151,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             if (!response.ok) throw new Error("Не вдалося залишити коментар");
 
-            commentInput.value = ""; // Очищуємо поле
-            fetchReviews(); // Оновлюємо список відгуків
+            commentInput.value = ""; 
+            fetchReviews(); 
 
         } catch (error) {
             console.error("Помилка:", error);
@@ -160,5 +160,5 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     });
 
-    fetchReviews(); // Завантажуємо відгуки при завантаженні сторінки
+    fetchReviews(); 
 });

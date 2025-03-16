@@ -37,6 +37,21 @@ async function loadUserEvents() {
             return;
         }
 
+        const categoryMapping = {
+            "donate": "Донат",
+            "ecology": "Екологія",
+            "military": "Військове",
+            "help": "Допомога",
+            "education": "Освіта",
+            "medicine": "Медицина",
+            "community": "Громадська діяльність",
+            "social": "Соціальні ініціативи",
+            "emergency": "Надзвичайні ситуації",
+            "mental-health": "Психологічна підтримка",
+            "human-rights": "Права людини",
+            "reconstruction": "Відновлення інфраструктури"
+        };
+
         let html = events
             .map(
                 (event) => `
@@ -46,9 +61,11 @@ async function loadUserEvents() {
                     <span class="event-date">${event.start_date} - ${event.end_date}</span>
                 </div>
                 <p><strong>Місце:</strong> ${event.location_full}</p>
-                <p><strong>Категорія:</strong> ${event.category}</p>
+                <p><strong>Категорія:</strong> ${categoryMapping[event.category] || event.category}</p>
+                <p><strong>Email:</strong> ${event.email}</p>
+                 <p><strong>Потрібно людей:</strong> ${event.people_needed}</p>
                 <p class="event-description">${event.description}</p>
-                <p class="event-description">${event.people_needed}</p>
+                
                 <button class="event-btn delete-btn" data-id="${event.id}">Видалити</button>
            </div>
         `
@@ -100,7 +117,7 @@ async function deleteEvent(eventId) {
 }
 
 
-async function loadSubscribedEvents() {
+async function loadSubscribedEvents() { 
     try {
         let response = await fetch("https://newhandy-4b950124bf06.herokuapp.com/my-subscriptions/", {
             method: "GET",
@@ -125,29 +142,68 @@ async function loadSubscribedEvents() {
         let html = events
             .map(
                 (event) => `
-           <div class="event-item">
-    <div class="event-header">
-    
-    
-        <h3 class="event-title">${event.title}</h3>
-        
-        <span class="event-date">${event.start_date} - ${event.end_date}</span>
-    </div>
-    <img src="https://newhandy-4b950124bf06.herokuapp.com${event.image}" alt="${event.title}" >
-    <p><strong>Місце:</strong> ${event.location_full}</p>
-    <p><strong>Категорія:</strong> ${event.category}</p>
-    <p class="event-description">${event.description}</p>
-    
-    <button class="event-btn">Деталі</button>
-</div>
+           <div class="event-item" id="event-${event.id}">
+                <div class="event-header">
+                    <h3 class="event-title">${event.title}</h3>
+                    <span class="event-date">${event.start_date} - ${event.end_date}</span>
+                </div>
+                <img class="event-img" src="https://newhandy-4b950124bf06.herokuapp.com${event.image}" alt="${event.title}">
+                <p><strong>Місце:</strong> ${event.location_full}</p>
+                <p><strong>Категорія:</strong> ${event.category}</p>
+                <p><strong>Email:</strong> ${event.email}</p>
+                <p><strong>Номер телефона:</strong> ${event.phone_number}</p>
+                <p class="event-description">${event.description}</p>
+                <p><strong>Потрібно людей:</strong> ${event.people_needed}</p>
+                
+                <button class="event-btn unsubscribe-btn" data-id="${event.id}">Відписатися</button>
+           </div>
         `
             )
             .join("");
 
         container.innerHTML = html;
+
+        
+        document.querySelectorAll(".unsubscribe-btn").forEach((button) => {
+            button.addEventListener("click", async function () {
+                let eventId = this.getAttribute("data-id");
+                await unsubscribe(eventId);
+                document.getElementById(`event-${eventId}`).remove(); 
+            });
+        });
+
     } catch (error) {
         console.error("Помилка:", error);
         document.getElementById("helped").innerHTML = `<div class="content-box">Не вдалося завантажити події.</div>`;
+    }
+}
+
+
+async function unsubscribe(eventId) {
+    if (!confirm("Ви впевнені, що хочете відписатися?")) {
+        return;
+    }
+
+    try {
+        let response = await fetch(`https://newhandy-4b950124bf06.herokuapp.com/unsubscribe/${eventId}/`, {
+            method: "POST",
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("access_token"),
+                "Content-Type": "application/json"
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error("Не вдалося відписатися від події");
+        }
+
+        
+        document.getElementById(`event-${eventId}`).remove();
+        alert("Ви успішно відписалися від події!");
+
+    } catch (error) {
+        console.error("Помилка відписки:", error);
+        alert("Не вдалося відписатися. Спробуйте ще раз.");
     }
 }
 
@@ -422,4 +478,3 @@ async function loadUserComments() {
 document.addEventListener("DOMContentLoaded", function () {
     loadUserComments();
 });
-

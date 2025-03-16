@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <div class="event-details-container">
                     <div class="event-details">
                         <p class="event-location">${event.location_full}</p>
-                        <p class="event-dates">${event.start_time} - ${event.end_time}</p>
+                        <p class="event-dates">${event.start_date} - ${event.end_date}</p>
                     </div>
                     <div class="event-details">
                         <p class="event-category">${categoryMapping[event.category] || event.category}</p>
@@ -91,6 +91,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         <div class="event-author">
                           <a href="https://rest-jade.vercel.app/profileView.html?userId=${event.posted_by}" class="user-profile-link">
                                     <img class="author-pic" src="https://newhandy-4b950124bf06.herokuapp.com${event.posted_by_profile_picture || 'https://via.placeholder.com/50'}" alt="Profile Picture">
+                                    <span class="author-name">${event.posted_by_first_name}-${event.posted_by_last_name}  </span>
                         </div>            
                     </div>
                 </div>

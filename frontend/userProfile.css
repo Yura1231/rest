@@ -370,7 +370,7 @@ margin: 0 auto;
     background-color: #043c05;
 }
 
-/* Стиль для картки події */
+
 .event-item {
     background-color: #F7F9F5;
     border-radius: 15px;
@@ -380,13 +380,13 @@ margin: 0 auto;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Зміна ефекту при наведенні */
+
 .event-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* Стиль для заголовка події */
+
 .event-header {
     display: flex;
     justify-content: space-between;
@@ -405,7 +405,7 @@ margin: 0 auto;
     color: #6a6a6a;
 }
 
-/* Опис події */
+
 .event-description {
     margin-top: 10px;
     font-size: 14px;
@@ -413,7 +413,7 @@ margin: 0 auto;
     line-height: 1.5;
 }
 
-/* Кнопка для деталей */
+
 .event-btn {
     background-color: #085A0A;
     color: white;
@@ -426,8 +426,34 @@ margin: 0 auto;
     transition: background-color 0.3s ease;
 }
 
+.event-img {
+    width: 100%;
+    max-width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
 .event-btn:hover {
     background-color: #006400;
+    transform: scale(1.05);
+}
+
+.unsubscribe-btn {
+    background-color: #D9534F;
+}
+
+.unsubscribe-btn:hover {
+    background-color: #C9302C;
+}
+
+.delete-btn {
+    background-color: #A94442;
+}
+
+.delete-btn:hover {
+    background-color: #8A3030;
 }
 .footer {
     background-color: #085A0A;
@@ -470,7 +496,7 @@ margin: 0 auto;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Додаємо вирівнювання вліво */
+    align-items: flex-start; 
 }
 
 .review-content p {
@@ -566,5 +592,5 @@ margin: 0 auto;
 
 .auth-desktop .link,
 .auth-mobile .link {
-    margin: 0 10px; /* Відступи зліва та справа */
+    margin: 0 10px; 
 }

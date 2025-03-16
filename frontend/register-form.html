@@ -41,16 +41,16 @@
 
   <script>
     document.getElementById('register-form').addEventListener('submit', async function(event) {
-      event.preventDefault(); // Зупиняємо перезавантаження сторінки
+      event.preventDefault(); 
 
-      // Отримуємо значення полів
+      
       const first_name = document.getElementById('first_name').value;
       const last_name = document.getElementById('last_name').value;
       const email = document.getElementById('email').value;
       const phone_number = document.getElementById('phone_number').value;
       const password = document.getElementById('password').value;
 
-      // Відправка запиту на сервер
+      
       const response = await fetch('https://newhandy-4b950124bf06.herokuapp.com/register/', {
         method: 'POST',
         headers: {

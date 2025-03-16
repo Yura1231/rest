@@ -194,6 +194,8 @@ h1 {
 .event-author {
     display: flex;
     align-items: center;
+    gap: 8px; /* Відстань між аватаром і ім'ям */
+    flex-wrap: nowrap;
 }
 
 .event-author img {
@@ -207,9 +209,11 @@ h1 {
 .author-name {
     font-size: 16px;
     font-weight: bold;
-    margin-bottom: 5px;
-    margin-right: 20px;
     color: #000000;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    max-width: 150px; 
 }
 
 .event-details {
