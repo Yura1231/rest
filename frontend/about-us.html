@@ -11,23 +11,34 @@
         <div class="container">
             <div class="header-container">
                 <div class="logo">HANDY</div>
-             <nav class="header-nav">
-                     <ul class="header-menu">
-                        <li><a class= "link" href="/index.html">Головна</a></li>
-                        <li><a class= "link" href="eventList.html">Події</a></li>
-                        <li><a class= "link" href="/about-us.html">Про нас</a></li>
-                        <li><a class= "link" href="contact.html">Контакти</a></li>
-                     </ul>
+                <nav class="header-nav">
+                    <ul class="header-menu">
+                        <li><a class="link" href="/index.html">Головна</a></li>
+                        <li><a class="link" href="eventList.html">Події</a></li>
+                        <li><a class="link" href="/about-us.html">Про нас</a></li>
+                        <li><a class="link" href="/contact.html">Контакти</a></li>
+                        <li class="auth-mobile">
+                            <a class= "link" href="login.html" id="login-btn"  >Увійти</a> | <a class= "link" href="/register-form.html" id="register-btn">Зареєструватись</a> 
+                    <a class="link" id="logout-btn" href="#" style="display: none;">Вихід</a>
+                    <a class= "link" href="userProfile.html" id="profile-btn" style="display: none;" >Профіль </a>
+                        </li>
+                    </ul>
                 </nav>
-                <div class="auth">
+                <button class="burger-menu" aria-label="Відкрити меню">☰</button>
+                <div class="auth-desktop">
                     <a class= "link" href="login.html" id="login-btn"  >Увійти</a> | <a class= "link" href="/register-form.html" id="register-btn">Зареєструватись</a> 
                     <a class="link" id="logout-btn" href="#" style="display: none;">Вихід</a>
                     <a class= "link" href="userProfile.html" id="profile-btn" style="display: none;" >Профіль </a>
                 </div>
             </div>
         </div>
+    
+        <script>
+            document.querySelector('.burger-menu').addEventListener('click', function () {
+                document.querySelector('.header-menu').classList.toggle('active');
+            });
+        </script>
     </header>
-
     <main class="about-us">
         <div class="container">
             <!-- <h1>ПРО НАС</h1> -->

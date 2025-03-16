@@ -12,19 +12,33 @@
         <div class="container">
             <div class="header-container">
                 <div class="logo">HANDY</div>
-            <nav class="header-nav">
+                <nav class="header-nav">
                     <ul class="header-menu">
-                        <li><a class= "link" href="index.html">Головна</a></li>
-                        <li><a class= "link" href="test.html">Події</a></li>
-                        <li><a class= "link" href="about-us.html">Про нас</a></li>
-                        <li><a class= "link" href="/contact.html">Контакти</a></li>
+                        <li><a class="link" href="/index.html">Головна</a></li>
+                        <li><a class="link" href="eventList.html">Події</a></li>
+                        <li><a class="link" href="/about-us.html">Про нас</a></li>
+                        <li><a class="link" href="/contact.html">Контакти</a></li>
+                        <li class="auth-mobile">
+                            <a class= "link" href="login.html" id="login-btn"  >Увійти</a> | <a class= "link" href="/register-form.html" id="register-btn">Зареєструватись</a> 
+                    <a class="link" id="logout-btn" href="#" style="display: none;">Вихід</a>
+                    <a class= "link" href="userProfile.html" id="profile-btn" style="display: none;" >Профіль </a>
+                        </li>
                     </ul>
                 </nav>
-                <div class="auth">
-                    <a class= "link" href="login.html" id="login-btn"  >Увійти</a> | <a class= "link" href="/register-form.html" id="register-btn">Зареєструватись</a> | <button type="button" id="logout-btn" style="display:none;">Вихід</button> <a class= "link" href="userProfile.html" id="profile-btn" style="display: none;" >Профіль </a>
+                <button class="burger-menu" aria-label="Відкрити меню">☰</button>
+                <div class="auth-desktop">
+                    <a class= "link" href="login.html" id="login-btn"  >Увійти</a> | <a class= "link" href="/register-form.html" id="register-btn">Зареєструватись</a> 
+                    <a class="link" id="logout-btn" href="#" style="display: none;">Вихід</a>
+                    <a class= "link" href="userProfile.html" id="profile-btn" style="display: none;" >Профіль </a>
                 </div>
             </div>
         </div>
+    
+        <script>
+            document.querySelector('.burger-menu').addEventListener('click', function () {
+                document.querySelector('.header-menu').classList.toggle('active');
+            });
+        </script>
     </header>
 
     <div class="container profile-container">
@@ -74,7 +88,7 @@
                     </div>
                     <ul class="footer-menu">
                         <li><a class="footer-link" href="/index.html">Головна</a></li>
-                        <li><a class="footer-link" href="#">Події</a></li>
+                        <li><a class="footer-link" href="eventList.html">Події</a></li>
                         <li><a class="footer-link" href="/about-us.html">Про нас</a></li>
                         <li><a class="footer-link" href="contact.html">Контакти</a></li>
                     </ul>

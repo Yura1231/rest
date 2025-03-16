@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="uk">
 <head>
@@ -15,23 +16,36 @@
         <div class="container">
             <div class="header-container">
                 <div class="logo">HANDY</div>
-            <nav class="header-nav">
+                <nav class="header-nav">
                     <ul class="header-menu">
-                        <li><a class= "link" href="/index.html">Головна</a></li>
-                        <li><a class= "link" href="eventList.html">Події</a></li>
-                        <li><a class= "link" href="about-us.html">Про нас</a></li>
-                        <li><a class= "link" href="instruction.html">Інструкція з використання</a></li>
+                        <li><a class="link" href="/index.html">Головна</a></li>
+                        <li><a class="link" href="eventList.html">Події</a></li>
+                        <li><a class="link" href="/about-us.html">Про нас</a></li>
+                        <li><a class="link" href="/contact.html">Контакти</a></li>
+                        <li class="auth-mobile">
+                            <a class= "link" href="login.html" id="login-btn"  >Увійти</a> | <a class= "link" href="/register-form.html" id="register-btn">Зареєструватись</a> 
+                    <a class="link" id="logout-btn" href="#" style="display: none;">Вихід</a>
+                    <a class= "link" href="userProfile.html" id="profile-btn" style="display: none;" >Профіль </a>
+                        </li>
                     </ul>
                 </nav>
-                <div class="auth">
+                <button class="burger-menu" aria-label="Відкрити меню">☰</button>
+                <div class="auth-desktop">
                     <a class= "link" href="login.html" id="login-btn"  >Увійти</a> | <a class= "link" href="/register-form.html" id="register-btn">Зареєструватись</a> 
                     <a class="link" id="logout-btn" href="#" style="display: none;">Вихід</a>
                     <a class= "link" href="userProfile.html" id="profile-btn" style="display: none;" >Профіль </a>
                 </div>
             </div>
         </div>
+    
+        <script>
+            document.querySelector('.burger-menu').addEventListener('click', function () {
+                document.querySelector('.header-menu').classList.toggle('active');
+            });
+        </script>
     </header>
-   
+
+
     <body>
         <section class="hero">
             <div class="container">
@@ -45,7 +59,7 @@
                         <img src="images/close.png" alt="Закрити">
                     </button>
                     <h2>Додати подію</h2>
-                   <form id="event-form">
+                <form id="event-form">
             <div class="form-grid">
                 <div class="form-group">
                     <label for="title">Назва</label>
@@ -378,34 +392,28 @@ document.getElementById("event-form").addEventListener("submit", async function(
     <script>
         document.addEventListener('DOMContentLoaded', function() {
     const accessToken = localStorage.getItem('access_token');
-   
+
 
     if (accessToken) {
-        document.getElementById('register-btn').style.display = 'none';
-        document.getElementById('login-btn').style.display = 'none';
-        document.getElementById('logout-btn').style.display = 'inline-block';
-        document.getElementById('profile-btn').style.display = 'inline-block';
-        document.getElementById('modal-btn-open').style.display = 'inline-block';
-        
-    }
+    document.querySelectorAll('.auth-desktop a, .auth-mobile a').forEach(link => {
+        if (link.href.includes('login') || link.href.includes('register-form')) {
+            link.style.display = 'none';
+        }
+    });
 
-    
+    document.getElementById('logout-btn').style.display = 'inline-block';
+    document.getElementById('profile-btn').style.display = 'inline-block';
+}
 });
-
-document.getElementById('logout-btn').addEventListener('click', function () {
-    event.preventDefault();
-    
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('refresh_token');
-    
-    location.reload();
-
-    
-    
+document.getElementById('logout-btn').addEventListener('click', function (event) {
+event.preventDefault();
+localStorage.removeItem('access_token');
+localStorage.removeItem('refresh_token');
+location.reload();
 });
 
 document.getElementById('profile-btn').addEventListener('click', function() {
-    window.location.href = 'profile.html';
+    window.location.href = 'userProfile.html';
 });
 
     </script>

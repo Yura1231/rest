@@ -27,7 +27,7 @@ class PostAdmin(admin.ModelAdmin):
     approve_posts.short_description = "Схвалити вибрані пости"
 
 
-# Спочатку розреєструємо, якщо вже було зареєстровано
+
 
 
 @admin.register(Comment)

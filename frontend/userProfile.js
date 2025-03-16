@@ -57,7 +57,7 @@ async function loadUserEvents() {
 
         container.innerHTML = html;
 
-        // Додаємо обробник подій для кнопок "Видалити"
+        
         document.querySelectorAll(".delete-btn").forEach((button) => {
             button.addEventListener("click", async function () {
                 let eventId = this.getAttribute("data-id");
@@ -71,7 +71,7 @@ async function loadUserEvents() {
     }
 }
 
-// Функція для видалення події
+
 async function deleteEvent(eventId) {
     if (!confirm("Ви впевнені, що хочете видалити цю подію?")) {
         return;
@@ -157,15 +157,15 @@ document.getElementById("editNameBtn").addEventListener("click", function() {
     let photoInput = document.getElementById("photoInput");
     let profilePhoto = document.getElementById("profilePhoto");
     if (nameInput.style.display === "none") {
-        // Початок редагування
+       
         nameInput.value = nameDisplay.textContent;
         nameDisplay.style.display = "none";
         nameInput.style.display = "block";
         nameInput.focus();
-        // Показуємо вибір фото
+        
         photoInput.style.display = "block";
         this.textContent = "Зберегти";
-        // Додаємо кнопку "Скасувати", якщо її ще немає
+       
         if (!document.getElementById("cancelNameBtn")) {
             let cancelBtn = document.createElement("button");
             cancelBtn.textContent = "Скасувати";
@@ -173,17 +173,17 @@ document.getElementById("editNameBtn").addEventListener("click", function() {
             cancelBtn.id = "cancelNameBtn";
             cancelBtn.style.marginLeft = "10px";
             this.parentNode.appendChild(cancelBtn);
-            // Функціонал кнопки "Скасувати"
+            
             cancelBtn.addEventListener("click", function() {
                 nameInput.style.display = "none";
                 nameDisplay.style.display = "block";
-                // Ховаємо поле вибору фото
+                
                 photoInput.style.display = "none";
                 document.getElementById("editNameBtn").textContent = "Редагувати";
                 cancelBtn.remove();
             });
         }
-        // Додаємо обробник для вибору фото
+        
         photoInput.addEventListener("change", function(event) {
             const file = event.target.files[0];
             if (file) {
@@ -196,14 +196,14 @@ document.getElementById("editNameBtn").addEventListener("click", function() {
         });
 
     } else {
-        // Збереження змін
+       
         nameDisplay.textContent = nameInput.value;
         nameInput.style.display = "none";
         nameDisplay.style.display = "block";
-        // Ховаємо поле вибору фото
+        
         photoInput.style.display = "none";
         this.textContent = "Редагувати";
-        // Видаляємо кнопку "Скасувати"
+        
         let cancelBtn = document.getElementById("cancelNameBtn");
         if (cancelBtn) cancelBtn.remove();
     }
@@ -214,7 +214,7 @@ document.querySelectorAll('.edit-btn').forEach(btn => {
         let inputField = this.previousElementSibling;
         if (inputField.tagName === 'INPUT') {
             if (inputField.disabled) {
-                // Початок редагування
+                
                 inputField.dataset.originalValue = inputField.value;
                 inputField.disabled = false;
                 inputField.focus();
@@ -235,7 +235,7 @@ document.querySelectorAll('.edit-btn').forEach(btn => {
                     });
                 }
             } else {
-                // Збереження змін
+                
                 inputField.disabled = true;
                 this.textContent = 'Редагувати';
 
@@ -243,7 +243,7 @@ document.querySelectorAll('.edit-btn').forEach(btn => {
                     this.nextElementSibling.remove();
                 }
 
-                // Відправлення даних на сервер
+                
                 let updatedData = {
                     first_name: document.getElementById('first_name').value,
                     last_name: document.getElementById('last_name').value,
@@ -252,7 +252,7 @@ document.querySelectorAll('.edit-btn').forEach(btn => {
                     description: document.getElementById('content').value
                 };
 
-                const token = localStorage.getItem('access_token'); // Додаємо токен аутентифікації
+                const token = localStorage.getItem('access_token'); 
 
                 try {
                     let response = await fetch('https://newhandy-4b950124bf06.herokuapp.com/update-profile/', {
@@ -379,7 +379,7 @@ async function loadUserComments() {
         }
     
         let comments = await response.json();
-        console.log(comments); // Перевіряємо, що приходить від сервера
+        console.log(comments); 
     
         const reviewsContainer = document.getElementById("reviews");
         if (!reviewsContainer) {
@@ -387,7 +387,7 @@ async function loadUserComments() {
             return;
         }
     
-        reviewsContainer.innerHTML = ""; // Очищаємо перед вставкою коментарів
+        reviewsContainer.innerHTML = ""; 
     
         if (comments.length === 0) {
             reviewsContainer.innerHTML = `<div class="content-box">Немає коментарів.</div>`;
@@ -418,7 +418,7 @@ async function loadUserComments() {
     }
 }
 
-// Викликаємо функцію завантаження коментарів при завантаженні сторінки
+
 document.addEventListener("DOMContentLoaded", function () {
     loadUserComments();
 });
