@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="styles.css">
     
     
+    
+    
 </head>
 <body>
     <header class="header">
@@ -22,12 +24,14 @@
                     </ul>
                 </nav>
                 <div class="auth">
-                    <a class= "link" href="login.html" id="login-btn"  >Увійти</a> | <a class= "link" href="/register-form.html" id="register-btn">Зареєструватись</a> | <button type="button" id="logout-btn" class= "link" style="display:none;">Вихід</button> <a class= "link" href="userProfile.html" id="profile-btn" style="display: none;" >Профіль </a>
+                    <a class= "link" href="login.html" id="login-btn"  >Увійти</a> | <a class= "link" href="/register-form.html" id="register-btn">Зареєструватись</a> 
+                    <a class="link" id="logout-btn" href="#" style="display: none;">Вихід</a>
+                    <a class= "link" href="userProfile.html" id="profile-btn" style="display: none;" >Профіль </a>
                 </div>
             </div>
         </div>
     </header>
-
+   
     <body>
         <section class="hero">
             <div class="container">
@@ -389,6 +393,7 @@ document.getElementById("event-form").addEventListener("submit", async function(
 });
 
 document.getElementById('logout-btn').addEventListener('click', function () {
+    event.preventDefault();
     
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');

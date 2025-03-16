@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.getElementById('logout-btn').addEventListener('click', function () {
     
+    event.preventDefault();
+    
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
     
