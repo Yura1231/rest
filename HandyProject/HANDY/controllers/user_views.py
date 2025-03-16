@@ -52,10 +52,10 @@ def register(request):
 
         
         for user in User.objects.all():
-            if check_password(password, user.password):  # Порівнюємо збережений хеш із введеним паролем
+            if check_password(password, user.password):  
                 return Response({'error': 'Цей пароль вже використовується'}, status=status.HTTP_400_BAD_REQUEST)
 
-        # Створення користувача
+       
         user = User.objects.create_user(
             phone_number=phone_number,
             email=email,
@@ -193,10 +193,10 @@ def user_comments(request, user_id):
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
 def user_commentsss(request):
-    user = request.user  # отримуємо поточного аутентифікованого користувача
+    user = request.user  
 
     if request.method == "GET":
-        comments = Comment.objects.filter(recipient=user).order_by("-created_at")  # фільтруємо за поточним користувачем
+        comments = Comment.objects.filter(recipient=user).order_by("-created_at")  
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)
     
@@ -204,6 +204,6 @@ def user_commentsss(request):
 
 @api_view(['GET'])
 def get_user_comments(request, user_id):
-    comments = Comment.objects.filter(recipient_id=user_id)  # Фільтруємо коментарі за отримувачем
+    comments = Comment.objects.filter(recipient_id=user_id)  
     serializer = CommentSerializer(comments, many=True)
     return Response(serializer.data)
