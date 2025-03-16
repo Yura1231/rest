@@ -19,7 +19,7 @@
                 <label>Вкажіть пароль</label>
             </div>
             <button type="submit">Увійти</button>
-            <button type="button" id="logout-btn">Вихід</button>
+            
             <div class="register">
                 <p>Не маєте профілю? <a href="register-form.html">Зареєструйтесь</a></p>
             </div>
@@ -54,13 +54,7 @@
             }
         });
 
-        document.getElementById('logout-btn').addEventListener('click', function () {
-            console.log('Вихід натиснуто');
-            localStorage.removeItem('access_token');
-            localStorage.removeItem('refresh_token');
-            localStorage.removeItem('is_special');
-            window.location.href = 'login.html';
-        });
+        
     </script>
 </body>
 </html>
