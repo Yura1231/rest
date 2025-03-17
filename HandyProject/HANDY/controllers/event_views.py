@@ -87,25 +87,31 @@ def subscribe_to_post(request, event_id):
    
     if UserEventParticipation.objects.filter(user=user, event=event).exists():
         return Response({"message": "Ви вже підписані на цей пост."}, status=400)
+    
+    current_participants = UserEventParticipation.objects.filter(event=event).count()
+
+    if current_participants >= event.people_needed:
+        return Response({"message": "Досягнуто максимальної кількості учасників."}, status=400)
 
     
     subscription = UserEventParticipation.objects.create(user=user, event=event)
     return Response({"message": "Ви успішно підписалися на пост."}, status=201)
 
-
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def unsubscribe(request, event_id):
+    user = request.user
+    event = get_object_or_404(Event, id=event_id)
+
     print(f"Отриманий токен: {request.headers.get('Authorization')}")  
 
-    event = get_object_or_404(Event, id=event_id)
-    subscription = UserEventParticipation.objects.filter(user=request.user, event=event)
+    subscription = UserEventParticipation.objects.filter(user=user, event=event)
 
     if subscription.exists():
         subscription.delete()
         return JsonResponse({"message": "Ви відписалися від цієї події!"}, status=200)
-    else:
-        return JsonResponse({"message": "Ви не були підписані на цю подію."}, status=400)
+    
+    return JsonResponse({"message": "Ви не були підписані на цю подію."}, status=400)
     
 
 
