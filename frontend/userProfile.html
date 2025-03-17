@@ -16,19 +16,25 @@
                     <ul class="header-menu">
                         <li><a class="link" href="/index.html">Головна</a></li>
                         <li><a class="link" href="eventList.html">Події</a></li>
-                        <li><a class="link" href="/about-us.html">Про нас</a></li>
-                        <li><a class="link" href="/contact.html">Контакти</a></li>
+                        <li><a class="link" href="about-us.html">Про нас</a></li>
+                        <li><a class="link" href="contact.html">Контакти</a></li>
                         <li class="auth-mobile">
-                            <a class= "link" href="login.html" id="login-btn"  >Увійти</a> | <a class= "link" href="/register-form.html" id="register-btn">Зареєструватись</a> 
-                    <a class="link" id="logout-btn" href="#" style="display: none;">Вихід</a>
-                    <a class= "link" href="userProfile.html" id="profile-btn" style="display: none;" >Профіль </a>
+                            <a class="link" href="login.html" id="login-btn">Увійти</a> 
+                            <span class="auth-separator" id="auth-separator">|</span>
+                            <a class="link" href="/register-form.html" id="register-btn">Зареєструватись</a> 
+                            <a class="link" id="logout-btn" href="#" style="display: none;">Вихід</a> 
+                            <span class="logout-separator" id="logout-separator" style="display: none;">|</span>
+                            <a class="link" href="userProfile.html" id="profile-btn" style="display: none;">Профіль</a>
                         </li>
                     </ul>
                 </nav>
                 <button class="burger-menu" aria-label="Відкрити меню">☰</button>
                 <div class="auth-desktop">
-                    <a class= "link" href="login.html" id="login-btn"  >Увійти</a> | <a class= "link" href="/register-form.html" id="register-btn">Зареєструватись</a> 
-                    <a class="link" id="logout-btn" href="#" style="display: none;">Вихід</a>
+                    <a class= "link" href="login.html" id="login-btn"  >Увійти</a> 
+                    <span class="auth-separator" id="auth-separator">|</span>
+                    <a class= "link" href="/register-form.html" id="register-btn">Зареєструватись</a> 
+                    <a class="link" id="logout-btn" href="#" style="display: none;">Вихід</a> 
+                    <span class="logout-separator" id="logout-separator" style="display: none;">|</span>
                     <a class= "link" href="userProfile.html" id="profile-btn" style="display: none;" >Профіль </a>
                 </div>
             </div>
@@ -76,7 +82,7 @@
                 <input type="text" id="last_name" class="input-field" placeholder="Прізвище" disabled>
                 <button class="edit-btn">Редагувати</button>
             </div>
-            <button class="help-btn" id="help-btn" >Потрібна допомога</button>
+            
         </div>
     </div>
     <div class="tabs-container">

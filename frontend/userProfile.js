@@ -60,6 +60,7 @@ async function loadUserEvents() {
                     <h3 class="event-title">${event.title}</h3>
                     <span class="event-date">${event.start_date} - ${event.end_date}</span>
                 </div>
+                <img class="event-img" src="https://newhandy-4b950124bf06.herokuapp.com${event.image}" alt="${event.title}">
                 <p><strong>Місце:</strong> ${event.location_full}</p>
                 <p><strong>Категорія:</strong> ${categoryMapping[event.category] || event.category}</p>
                 <p><strong>Email:</strong> ${event.email}</p>
@@ -139,6 +140,21 @@ async function loadSubscribedEvents() {
             return;
         }
 
+        const categoryMapping = {
+            "donate": "Донат",
+            "ecology": "Екологія",
+            "military": "Військове",
+            "help": "Допомога",
+            "education": "Освіта",
+            "medicine": "Медицина",
+            "community": "Громадська діяльність",
+            "social": "Соціальні ініціативи",
+            "emergency": "Надзвичайні ситуації",
+            "mental-health": "Психологічна підтримка",
+            "human-rights": "Права людини",
+            "reconstruction": "Відновлення інфраструктури"
+        };
+
         let html = events
             .map(
                 (event) => `
@@ -149,7 +165,7 @@ async function loadSubscribedEvents() {
                 </div>
                 <img class="event-img" src="https://newhandy-4b950124bf06.herokuapp.com${event.image}" alt="${event.title}">
                 <p><strong>Місце:</strong> ${event.location_full}</p>
-                <p><strong>Категорія:</strong> ${event.category}</p>
+                <p><strong>Категорія:</strong> ${categoryMapping[event.category] || event.category}</p>
                 <p><strong>Email:</strong> ${event.email}</p>
                 <p><strong>Номер телефона:</strong> ${event.phone_number}</p>
                 <p class="event-description">${event.description}</p>
@@ -413,9 +429,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-document.getElementById('help-btn').addEventListener('click', function() {
-    window.location.href = 'add-event.html';
-});
+
 
 
 
@@ -478,3 +492,7 @@ async function loadUserComments() {
 document.addEventListener("DOMContentLoaded", function () {
     loadUserComments();
 });
+
+
+
+

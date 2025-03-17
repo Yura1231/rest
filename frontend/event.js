@@ -60,16 +60,28 @@ document.addEventListener('DOMContentLoaded', async () => {
         const subscribeButton = document.createElement('button');
         subscribeButton.classList.add(isRegistered ? 'unsubscribe-button' : 'subscribe-button');
         subscribeButton.textContent = isRegistered ? 'Відписатися' : 'Підписатися';
-        
+        subscribeButton.setAttribute("data-event-id", event.id);
         subscribeButton.addEventListener('click', async () => {
+          
+        })
+        subscribeButton.addEventListener('click', async () => {
+            const token = localStorage.getItem("access_token");
+            if (!token) {
+                alert("Будь ласка, увійдіть у систему.");
+                 return; 
+            }
             if (subscribeButton.textContent === 'Підписатися') {
-                await subscribe(event.id);
-                subscribeButton.textContent = 'Відписатися';
-                subscribeButton.classList.replace('subscribe-button', 'unsubscribe-button');
+                const success = await subscribe(event.id);
+                if (success) {
+                    subscribeButton.textContent = 'Відписатися';
+                    subscribeButton.classList.replace('subscribe-button', 'unsubscribe-button');
+                }
             } else {
-                await unsubscribe(event.id);
-                subscribeButton.textContent = 'Підписатися';
-                subscribeButton.classList.replace('unsubscribe-button', 'subscribe-button');
+                const success = await unsubscribe(event.id);
+                if (success) {
+                    subscribeButton.textContent = 'Підписатися';
+                    subscribeButton.classList.replace('unsubscribe-button', 'subscribe-button');
+                }
             }
         });
         
@@ -134,21 +146,27 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     async function subscribe(eventId) {
         const token = localStorage.getItem("access_token");
-        if (!token) {
-            alert("Будь ласка, увійдіть у систему.");
-            return;
-        }
-
-        try {
-            await fetch(`https://newhandy-4b950124bf06.herokuapp.com/events/${eventId}/`, {
+        if (!token) return false;
+    
+        try {   
+            const response = await fetch(`https://newhandy-4b950124bf06.herokuapp.com/events/${eventId}/`, {
                 method: "POST",
                 headers: {
                     "Authorization": "Bearer " + token,
                     "Content-Type": "application/json"
                 }
             });
+    
+            if (!response.ok) {  
+                const errorData = await response.json();
+                throw new Error(errorData.message || "Помилка підписки");
+            }
+    
+            return true;
         } catch (error) {
             console.error("Помилка підписки:", error);
+            alert("Не вдалося підписатися: " + error.message);
+            return false;
         }
     }
     
@@ -156,19 +174,28 @@ document.addEventListener('DOMContentLoaded', async () => {
         const token = localStorage.getItem("access_token");
         if (!token) {
             alert("Будь ласка, увійдіть у систему.");
-            return;
+            return false;
         }
-
+    
         try {
-            await fetch(`https://newhandy-4b950124bf06.herokuapp.com/unsubscribe/${eventId}/`, {
+            const response = await fetch(`https://newhandy-4b950124bf06.herokuapp.com/unsubscribe/${eventId}/`, {
                 method: "POST",
                 headers: {
                     "Authorization": "Bearer " + token,
                     "Content-Type": "application/json"
                 }
             });
+    
+            if (!response.ok) {  
+                const errorData = await response.json();
+                throw new Error(errorData.message || "Помилка відписки");
+            }
+    
+            return true;
         } catch (error) {
             console.error("Помилка відписки:", error);
+            alert("Не вдалося відписатися: " + error.message);
+            return false;
         }
     }
     
